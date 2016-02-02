@@ -1,0 +1,116 @@
+{
+  "User": [
+    {
+      "id": 1,
+      "email": "developer@gmail.com",
+      "password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+    },
+    {
+      "id": 2,
+      "email": "manager@gmail.com",
+      "password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+    }
+  ],
+  "Developer": [
+    {
+      "id": 1,
+      "UserId": 1,
+      "ProjectId": 1,
+      "TaskId": [
+        1
+      ]
+    }
+  ],
+  "ProjectManager": [
+    {
+      "id": 2,
+      "UserId": 2,
+      "ProjectsId": [
+        1
+      ]
+    }
+  ],
+  "TaskStatus": [
+    {
+      "id": 1,
+      "status": "created"
+    },
+    {
+      "id": 2,
+      "status": "assigned"
+    },
+    {
+      "id": 3,
+      "status": "submitted"
+    },
+    {
+      "id": 4,
+      "status": "completed"
+    }
+  ],
+  "TaskType": [
+    {
+      "id": 1,
+      "type": "frontend"
+    },
+    {
+      "id": 2,
+      "type": "backend"
+    },
+    {
+      "id": 3,
+      "type": "test"
+    },
+    {
+      "id": 4,
+      "type": "bugfix"
+    },
+    {
+      "id": 5,
+      "type": "deployment"
+    }
+  ],
+  "TaskDates": [
+    {
+      "id": 1,
+      "creation": "2016-01-01T09:00:00.321-10:00",
+      "assignment": "2016-01-05T09:00:00.321-10:00",
+      "submission": "2016-01-10T09:00:00.321-10:00",
+      "completion": "2016-01-11T09:00:00.321-10:00",
+      "deadline": "2016-01-15T09:00:00.321-10:00"
+    }
+  ],
+  "TaskComment": [
+    {
+      "id": 1,
+      "date": "2016-01-01T09:00:00.321-10:00",
+      "content": "Example content of a task comment",
+      "UserId": 1
+    }
+  ],
+  "Task": [
+    {
+      "id": 1,
+      "name": "My example task",
+      "TaskDatesId": 1,
+      "TaskStatusId": 1,
+      "TaskTypeId": 1,
+      "TaskCommentIds": [
+        1
+      ]
+    }
+  ],
+  "Project": [
+    {
+      "id": 1,
+      "ProjectManagerId": 2,
+      "DeveloperIds": [
+        1
+      ],
+      "TaskIds": [
+        1
+      ],
+      "status": true
+    }
+  ]
+}
