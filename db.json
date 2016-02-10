@@ -2,11 +2,13 @@
   "User": [
     {
       "id": 1,
+      "username": "Velislav",
       "email": "developer@gmail.com",
       "password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
     },
     {
       "id": 2,
+      "username": "Ivo",
       "email": "manager@gmail.com",
       "password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
     }
@@ -97,7 +99,8 @@
       "TaskTypeId": 1,
       "TaskCommentIds": [
         1
-      ]
+      ],
+      "DeveloperId": 1
     }
   ],
   "Project": [
