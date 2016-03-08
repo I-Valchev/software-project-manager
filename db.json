@@ -1,5 +1,5 @@
 {
-  "User": [
+  "users": [
     {
       "id": 1,
       "username": "Velislav",
@@ -13,26 +13,26 @@
       "password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
     }
   ],
-  "Developer": [
+  "developers": [
     {
       "id": 1,
-      "UserId": 1,
-      "ProjectId": 1,
-      "TaskId": [
+      "usersId": 1,
+      "projectsId": 1,
+      "tasksId": [
         1
       ]
     }
   ],
-  "ProjectManager": [
+  "projectmanagers": [
     {
       "id": 2,
-      "UserId": 2,
-      "ProjectsId": [
+      "usersId": 2,
+      "projectsId": [
         1
       ]
     }
   ],
-  "TaskStatus": [
+  "taskstatuses: [
     {
       "id": 1,
       "status": "created"
@@ -50,7 +50,7 @@
       "status": "completed"
     }
   ],
-  "TaskType": [
+  "tasktypes": [
     {
       "id": 1,
       "type": "frontend"
@@ -72,7 +72,7 @@
       "type": "deployment"
     }
   ],
-  "TaskDates": [
+  "taskdates": [
     {
       "id": 1,
       "creation": "2016-01-01T09:00:00.321-10:00",
@@ -82,35 +82,35 @@
       "deadline": "2016-01-15T09:00:00.321-10:00"
     }
   ],
-  "TaskComment": [
+  "taskcomments": [
     {
       "id": 1,
       "date": "2016-01-01T09:00:00.321-10:00",
       "content": "Example content of a task comment",
-      "UserId": 1
+      "usersId": 1
     }
   ],
-  "Task": [
+  "tasks": [
     {
       "id": 1,
       "name": "My example task",
-      "TaskDatesId": 1,
-      "TaskStatusId": 1,
-      "TaskTypeId": 1,
-      "TaskCommentIds": [
+      "taskdatesId": 1,
+      "taskstatusesId": 1,
+      "tasktypesId": 1,
+      "taskcommentsIds": [
         1
       ],
-      "DeveloperId": 1
+      "developersId": 1
     }
   ],
-  "Project": [
+  "projects": [
     {
       "id": 1,
-      "ProjectManagerId": 2,
-      "DeveloperIds": [
+      "projectmanagersId": 2,
+      "developersIds": [
         1
       ],
-      "TaskIds": [
+      "tasksIds": [
         1
       ],
       "status": true
