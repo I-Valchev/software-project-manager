@@ -5,6 +5,7 @@
 <br>
 <br>
 <div class="container">
+
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 
@@ -26,7 +27,8 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<table class="table table-striped table-bordered table-list" id="project_table_detail">
+					<table class="table table-striped table-bordered table-list"
+						id="project_table_detail">
 						<thead>
 							<tr>
 								<th class="hidden-xs col-md-1">Task</th>
@@ -43,10 +45,63 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
 
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col col-md-2 col-md-offset-10">
+							<button type="button" class="btn btn-sm btn-primary btn-create"
+								data-toggle="modal" data-target="#create-task-modal">New
+								Task</button>
+						</div>
+					</div>
 				</div>
 			</div>
 
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="create-task-modal" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+	style="display: none;">
+	<div class="modal-dialog">
+		<div class="createmodal-container">
+			<form id="create-task-form">
+				<fieldset>
+					<legend>Task name</legend>
+					<input id="task-name-create" class="form-control"
+						name="task-name" type="text" required autofocus />
+				</fieldset>
+
+				<fieldset>
+					<legend>Task dates</legend>
+					<span class="input-group-addon">Date created</span>
+					<input id="date-created-create" type="date" class="form-control" />
+					
+					<br>
+					
+					<span class="input-group-addon">Date assigned</span>
+					<input id="date-assinged-create" type="date" class="form-control" />
+					
+					<br>
+					
+					<span class="input-group-addon">Deadline</span>
+					<input id="deadline-create" type="date" class="form-control" />
+					
+					<br>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Developer</legend>
+					
+					<input type="text" class="form-control"></input>
+				</fieldset>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">
+					Create</button>
+			</form>
 		</div>
 	</div>
 </div>
