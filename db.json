@@ -44,9 +44,6 @@
     {
       "id": 1,
       "name": "My example task",
-      "taskDateId": 1,
-      "taskStatusId": 1,
-      "taskTypeId": 1,
       "taskCommentIds": [
         1
       ],
