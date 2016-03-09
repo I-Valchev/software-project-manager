@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<table class="table table-striped table-bordered table-list">
+					<table class="table table-striped table-bordered table-list" id="projects_table">
 						<thead>
 							<tr>
 								<th class="col-md-2"><em class="fa fa-cog"></em></th>
@@ -38,9 +38,9 @@
 								<td align="center"><a class="btn btn-default"><em
 										class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em
 										class="fa fa-trash"></em></a></td>
-								<td id="project-manager-name"></td>
-								<td id="developers-list"></td>
-								<td id="tasks-list"></td>
+								<td id="project-manager-name">Ivo</td>
+								<td id="developers-list">Pesho, Mesho</td>
+								<td id="tasks-list">-1, -2</td>
 							</tr>
 						</tbody>
 					</table>
@@ -68,9 +68,9 @@
 					<legend>Project status:</legend>
 
 					<label class="radio-inline"> <input type="radio"
-						name="radio" val="active">Active
+						name="radio_create_project" val="active">Active
 					</label> <label class="radio-inline"> <input type="radio"
-						name="radio" val="completed">Completed
+						name="radio_create_project" val="completed">Completed
 					</label>
 
 				</fieldset>
