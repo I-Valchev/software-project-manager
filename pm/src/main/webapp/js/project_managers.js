@@ -22,10 +22,15 @@ $(document).ready(function() {
     	
     	$("#project-manager-name-"+projectManager.id).text(projectManager.id);
     	
+    	var project_link = ENDPOINT_PORJECT_MANAGERS+'/'+ projectManager.id;
+    	
     	$.each(projectManager.projectIds, function(index, value){
-    		$("#list-projects").append('<li>'+value+'</li>');
+    		$("#list-projects").append($('<li></li>').append($('<a></a>').attr('href', project_link).text(value)));
     	})
     }
+    
+    var project_manager = {id:1, projectIds: [1,2,3]};
+    addProjectManagerToContent(project_manager);
     
     function displayProjectManagers(){
     	listProjectManagers().then(function(response){
