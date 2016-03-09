@@ -32,7 +32,7 @@
       ]
     }
   ],
-  "taskstatuses: [
+  "taskstatuses": [
     {
       "id": 1,
       "status": "created"
