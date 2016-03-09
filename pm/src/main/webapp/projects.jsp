@@ -12,10 +12,13 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col col-xs-6">
-							<h2 class="panel-title"><b>sPM Projects</b></h2>
+							<h2 class="panel-title">
+								<b>sPM Projects</b>
+							</h2>
 						</div>
 						<div class="col col-xs-6 text-right">
-							<button type="button" class="btn btn-sm btn-primary btn-create">Create
+							<button type="button" class="btn btn-sm btn-primary btn-create"
+								data-toggle="modal" data-target="#create-modal">Create
 								New</button>
 						</div>
 					</div>
@@ -48,5 +51,36 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true"
+	style="display: none;">
+	<div class="modal-dialog">
+		<div class="createmodal-container">
+			<form action="#" method="post" class="form" role="form">
+				<fieldset>
+					<legend>Project name</legend>
+					<input class="form-control" name="project-name" type="text"
+						required autofocus />
+				</fieldset>
+
+				<fieldset>
+					<legend>Project status:</legend>
+
+					<label class="radio-inline"> <input type="radio"
+						name="radio_pm" val="active">Active
+					</label> <label class="radio-inline"> <input type="radio"
+						name="radio_dev" val="completed">Completed
+					</label>
+
+				</fieldset>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">
+					Create</button>
+			</form>
+		</div>
+	</div>
+</div>
+
 
 <%@include file="footer.html"%>
