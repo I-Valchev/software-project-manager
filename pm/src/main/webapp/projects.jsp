@@ -38,9 +38,9 @@
 								<td align="center"><a class="btn btn-default"><em
 										class="fa fa-pencil"></em></a> <a class="btn btn-danger"><em
 										class="fa fa-trash"></em></a></td>
-								<td id="project-manager-name">Ivo</td>
-								<td id="developers-list">Pesho, Mesho</td>
-								<td id="tasks-list">-1, -2</td>
+								<td id="project-manager-name"></td>
+								<td id="developers-list"></td>
+								<td id="tasks-list"></td>
 							</tr>
 						</tbody>
 					</table>
