@@ -40,9 +40,7 @@
 								<th class="col-md-2">Deadline</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-							</tr>
+						<tbody id="tasks-list">
 						</tbody>
 					</table>
 				</div>
@@ -71,36 +69,52 @@
 			<form id="create-task-form">
 				<fieldset>
 					<legend>Task name</legend>
-					<input id="task-name-create" class="form-control"
-						name="task-name" type="text" required autofocus />
+					<input id="task-name-create" class="form-control" name="task-name"
+						type="text" required autofocus />
+				</fieldset>
+				
+				<fieldset>
+					<legend>Type</legend>
+
+					<div class="btn-group">
+						<button type="button"
+							class="btn btn-default dropdown-toggle form-control"
+							data-toggle="dropdown">
+							<span data-bind="label">Select type</span>&nbsp;<span
+								class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Front-end</a></li>
+							<li><a href="#">Back-end</a></li>
+							<li><a href="#">Test</a></li>
+							<li><a href="#">Bugfix</a></li>
+							<li><a href="#">Deployment</a></li>
+						</ul>
+					</div>
+					
+					<br>
 				</fieldset>
 
 				<fieldset>
 					<legend>Task dates</legend>
-					<span class="input-group-addon">Date created</span>
-					<input id="date-created-create" type="date" class="form-control" />
-					
-					<br>
-					
-					<span class="input-group-addon">Date assigned</span>
-					<input id="date-assinged-create" type="date" class="form-control" />
-					
-					<br>
-					
-					<span class="input-group-addon">Deadline</span>
-					<input id="deadline-create" type="date" class="form-control" />
-					
-					<br>
-				</fieldset>
-				
-				<fieldset>
-					<legend>Developer</legend>
-					
-					<input type="text" class="form-control"></input>
+					<span class="input-group-addon">Date created</span> <input
+						id="date-created-create" type="date" class="form-control" /> <br>
+
+					<span class="input-group-addon">Date assigned</span> <input
+						id="date-assinged-create" type="date" class="form-control" /> <br>
+
+					<span class="input-group-addon">Deadline</span> <input
+						id="deadline-create" type="date" class="form-control" /> <br>
 				</fieldset>
 
-				<button class="btn btn-lg btn-primary btn-block" type="submit">
-					Create</button>
+				<fieldset>
+					<legend>Developer</legend>
+
+					<input id="developer-create" type="text" class="form-control"></input>
+				</fieldset>
+
+				<button id="create-task" class="btn btn-lg btn-primary btn-block"
+					type="submit">Create</button>
 			</form>
 		</div>
 	</div>
