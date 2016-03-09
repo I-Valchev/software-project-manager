@@ -68,9 +68,9 @@
 					<legend>Project status:</legend>
 
 					<label class="radio-inline"> <input type="radio"
-						name="radio_pm" val="active">Active
+						name="radio" val="active">Active
 					</label> <label class="radio-inline"> <input type="radio"
-						name="radio_dev" val="completed">Completed
+						name="radio" val="completed">Completed
 					</label>
 
 				</fieldset>
