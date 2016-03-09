@@ -57,18 +57,18 @@
 	style="display: none;">
 	<div class="modal-dialog">
 		<div class="createmodal-container">
-			<form action="#" method="post" class="form" role="form">
+			<form id="create_project_form">
 				<fieldset>
 					<legend>Project name</legend>
-					<input class="form-control" name="project-name" type="text"
+					<input id="project_name_create" class="form-control" name="project-name" type="text"
 						required autofocus />
 				</fieldset>
 
 				<fieldset>
 					<legend>Project status:</legend>
 
-					<label class="radio-inline"> <input type="radio"
-						name="radio_create_project" val="active">Active
+					<label class="radio-inline"> <input type="radio" id="project_active_create"
+						name="radio_create_project" val="active" required>Active
 					</label> <label class="radio-inline"> <input type="radio"
 						name="radio_create_project" val="completed">Completed
 					</label>
