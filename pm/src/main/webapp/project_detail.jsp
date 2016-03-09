@@ -29,7 +29,6 @@
 					<table class="table table-striped table-bordered table-list" id="project_table_detail">
 						<thead>
 							<tr>
-								<th class="col-md-2"><em class="fa fa-cog"></em></th>
 								<th class="hidden-xs col-md-1">Task</th>
 								<th class="hidden-xs col-md-1">Developer</th>
 								<th class="col-md-2">Date created</th>
