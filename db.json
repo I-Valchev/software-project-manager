@@ -106,7 +106,7 @@
   "projects": [
     {
       "id": 1,
-      "projectName": "MyProj",
+      "name": "MyProj",
       "projectManagerId": 2,
       "developerIds": [
         1
