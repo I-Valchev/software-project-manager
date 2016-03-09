@@ -16,10 +16,10 @@ $(document).ready(function() {
     	projects_table.children('tbody').empty();
     }
     
-    function addProjectToTable(project){
+    function addProjectToTable(index, project){
     	projects_table.children('tbody').append($("<tr></tr>")
     		.append($("<td align=\"center\"><a class=\"btn btn-default\">" + 
-    			"<em class=\"fa fa-pencil\"></em></a> <a class=\"btn btn-danger\"><em class=\"fa fa-trash\"></em></a></td>"))
+    			"<em class=\"fa fa-pencil\"></em></a> <button project-id="+index+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
     		.append($("<td></td>").text(project.projectManagerId))
     		.append($("<td></td>").text(project.developerIds))
     		.append($("<td></td>").text(project.taskIds)));
@@ -30,10 +30,28 @@ $(document).ready(function() {
     		clearTable();
     		
     		$(response).each(function(index, obj){
-    			addProjectToTable(obj);
+    			addProjectToTable(index, obj);
     		});
     	});
     }
+    
+    var project = {projectManagerId: 1, developersIds: [1,2], taskIds: [1,2]};
+    
+    addProjectToTable(15,project);
+    
+    
+    function deleteProject(id) {
+        return $.ajax(ENDPOINT_PROJECTS + "/" + id, {
+            method: "DELETE"
+        });
+    }
+
+    
+    $("tbody .delete_button").click(function(){
+    	deleteProject($(this).attr("project-id")).then(function(response){
+    		displayProjects();
+    	})
+    })
     
     $("#create_project_form").submit(function(e){
     	var project_name = $("#project_name_create").val();
@@ -52,5 +70,5 @@ $(document).ready(function() {
     	});
     })
     
-//    displayProjects();
+    displayProjects();
 });
