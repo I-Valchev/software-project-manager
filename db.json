@@ -32,56 +32,6 @@
       ]
     }
   ],
-  "taskstatuses": [
-    {
-      "id": 1,
-      "status": "created"
-    },
-    {
-      "id": 2,
-      "status": "assigned"
-    },
-    {
-      "id": 3,
-      "status": "submitted"
-    },
-    {
-      "id": 4,
-      "status": "completed"
-    }
-  ],
-  "tasktypes": [
-    {
-      "id": 1,
-      "type": "frontend"
-    },
-    {
-      "id": 2,
-      "type": "backend"
-    },
-    {
-      "id": 3,
-      "type": "test"
-    },
-    {
-      "id": 4,
-      "type": "bugfix"
-    },
-    {
-      "id": 5,
-      "type": "deployment"
-    }
-  ],
-  "taskdates": [
-    {
-      "id": 1,
-      "creation": "2016-01-01T09:00:00.321-10:00",
-      "assignment": "2016-01-05T09:00:00.321-10:00",
-      "submission": "2016-01-10T09:00:00.321-10:00",
-      "completion": "2016-01-11T09:00:00.321-10:00",
-      "deadline": "2016-01-15T09:00:00.321-10:00"
-    }
-  ],
   "taskcomments": [
     {
       "id": 1,
@@ -100,7 +50,12 @@
       "taskCommentIds": [
         1
       ],
-      "developersId": 1
+      "developersId": 1,
+      "dateCreated": "2016-01-01T09:00:00.321-10:00",
+      "dateAssigned": "2016-01-01T09:00:00.321-10:00",
+      "dateSubmitted": "2016-01-01T09:00:00.321-10:00",
+      "dateCompleted": "2016-01-01T09:00:00.321-10:00",
+      "deadline": "2016-01-01T09:00:00.321-10:00"
     }
   ],
   "projects": [
