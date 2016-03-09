@@ -25,10 +25,10 @@
 					</div>
 					
 					<label class="radio-inline">
-				      <input type="radio" name="radio_pm" val="pm">Project Manager
+				      <input id="radio_pm" type="radio" name="radio_register" val="pm">Project Manager
 				    </label>
 				    <label class="radio-inline">
-				      <input type="radio" name="radio_dev" val="dev">Developer
+				      <input id="radio_dev" type="radio" name="radio_register" val="dev">Developer
 				    </label>
 
 				</div>

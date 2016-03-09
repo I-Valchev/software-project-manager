@@ -53,7 +53,7 @@ $(document).ready(function() {
     	
     	user = addUser(user);
     	
-    	var val = $('input:radio[name=radio_pm]').is(':checked');
+    	var val = $('#radio_pm').is(':checked');
     	
     	if(val == true){
     		addProjectManager(user.id);
