@@ -1,7 +1,7 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_PROJECTS = "http://localhost:8080/pm/rest/projects";
+    var ENDPOINT_PROJECTS = "http://localhost:3000/projects";
     
     var projects_table = $("#projects_table");
     

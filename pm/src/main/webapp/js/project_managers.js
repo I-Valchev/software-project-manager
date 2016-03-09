@@ -1,7 +1,7 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_PORJECT_MANAGERS = "http://localhost:8080/pm/rest/projectmanagers";
+    var ENDPOINT_PROJECT_MANAGERS = "http://localhost:3000/projectmanagers";
     
     function listProjectManagers(){
     	return $.ajax(ENDPOINT_PROJECT_MANAGERS, {
@@ -22,24 +22,23 @@ $(document).ready(function() {
     	
     	$("#project-manager-name-"+projectManager.id).text(projectManager.id);
     	
-    	var project_link = ENDPOINT_PORJECT_MANAGERS+'/'+ projectManager.id;
+    	var project_link = ENDPOINT_PROJECT_MANAGERS+'/'+ projectManager.id;
     	
     	$.each(projectManager.projectIds, function(index, value){
     		$("#list-projects").append($('<li></li>').append($('<a></a>').attr('href', project_link).text(value)));
     	})
     }
     
-    var project_manager = {id:1, projectIds: [1,2,3]};
-    addProjectManagerToContent(project_manager);
-    
     function displayProjectManagers(){
     	listProjectManagers().then(function(response){
     		clearProjectManagers();
     		
     		$(response).each(function(index, obj){
-    			addProjectManagerToContent(index, obj);
+    			addProjectManagerToContent(obj);
     		});
     	});
     }
+    
+    displayProjectManagers();
 
 });
