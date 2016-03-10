@@ -3,6 +3,8 @@ $(document).ready(function() {
     
     var ENDPOINT_TASKS = "http://localhost:3000/tasks";
     
+    var tasks_table = $("#tasks-table");
+    
     function createTask(){
     	
     	var name = $("#task-name-create").val();
@@ -34,6 +36,34 @@ $(document).ready(function() {
     		return response;
     	});
     }
+	
+	function clearTable(){
+    	tasks_table.children('tbody').empty();
+    }
+	
+	function addTaskToTable(task){
+		task.id = 1;
+		projects_table.children('tbody').append($("<tr></tr>")
+	    		.append($("<td align=\"center\"><a class=\"btn btn-default\">" + 
+	    			"<em class=\"fa fa-pencil\"></em></a> <button project-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
+	    		.append($("<td></td>").text(task.name))
+	    		.append($("<td></td>").text(task.developersId))
+	    		.append($("<td></td>").text(task.dateCreated))
+	    		.append($("<td></td>").text(task.dateAssigned))
+	    		.append($("<td></td>").text(task.dateSubmitted))
+	    		.append($("<td></td>").text(task.dateCompleted))
+	    		.append($("<td></td>").text(task.deadline)));
+	}
+	
+	function displayTasks(){
+	    listTasks().then(function(response){
+	    	clearTable();
+	    	
+	    	$(response).each(function(index, obj){
+	    		addTaskToTable(obj);
+	    	});
+	    });
+	}
 
     $("#create-task-form").submit(function(e){
     	var task = createTask();

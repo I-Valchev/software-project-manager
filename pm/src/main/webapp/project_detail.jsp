@@ -27,17 +27,18 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<table class="table table-striped table-bordered table-list"
+					<table id="tasks-table" class="table table-striped table-bordered table-list"
 						id="project_table_detail">
 						<thead>
 							<tr>
+								<th class="col-md-1"><em class="fa fa-cog"></em></th>
 								<th class="hidden-xs col-md-1">Task</th>
 								<th class="hidden-xs col-md-1">Developer</th>
 								<th class="col-md-2">Date created</th>
 								<th class="col-md-2">Date assigned</th>
 								<th class="col-md-2">Date submitted</th>
 								<th class="col-md-2">Date completed</th>
-								<th class="col-md-2">Deadline</th>
+								<th class="col-md-1">Deadline</th>
 							</tr>
 						</thead>
 						<tbody id="tasks-list">
