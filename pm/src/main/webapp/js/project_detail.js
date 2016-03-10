@@ -5,7 +5,7 @@ $(document).ready(function() {
     
     function createTask(){
     	
-    	var name = $("#date-created-create").val();
+    	var name = $("#task-name-create").val();
     	
     	var type = $('[data-bind="label"]').text();
     	
@@ -15,14 +15,14 @@ $(document).ready(function() {
     	
     	var developer = $("#developer-create").val();
     	
-    	var task = {name: name, developersId: developer, dateCreated: date_created, 
-    			dateAssinged: date_assigned, deadline: deadline};
+    	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
+    			dateAssigned: date_assigned, deadline: deadline};
     	
     	return task;
     }
     
 	function addTask(task){
-    	var createPromise = $.ajax(ENDPOINT_DEVELOPERS, {
+    	var createPromise = $.ajax(ENDPOINT_TASKS, {
     		method: "POST",
     		contentType: "application/json; charset=utf-8",
     		data: JSON.stringify(task),
@@ -32,10 +32,10 @@ $(document).ready(function() {
     		return response;
     	});
     }
-    
-    $("#create-task").click(function(){
-    	var task = createTask();
 
+    $("#create-task-form").submit(function(e){
+    	var task = createTask();
+    	alert(task.name + " " + task.type);
     	addTask(task);
     })
     

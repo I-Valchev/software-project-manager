@@ -48,7 +48,7 @@
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col col-md-2 col-md-offset-10">
-							<button type="button" class="btn btn-sm btn-primary btn-create"
+							<button id="create-task" type="button" class="btn btn-sm btn-primary btn-create"
 								data-toggle="modal" data-target="#create-task-modal">New
 								Task</button>
 						</div>
@@ -113,7 +113,7 @@
 					<input id="developer-create" type="text" class="form-control"></input>
 				</fieldset>
 
-				<button id="create-task" class="btn btn-lg btn-primary btn-block"
+				<button class="btn btn-lg btn-primary btn-block"
 					type="submit">Create</button>
 			</form>
 		</div>
