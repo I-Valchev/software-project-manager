@@ -45,7 +45,7 @@ $(document).ready(function() {
 		task.id = 1;
 		projects_table.children('tbody').append($("<tr></tr>")
 	    		.append($("<td align=\"center\"><a class=\"btn btn-default\">" + 
-	    			"<em class=\"fa fa-pencil\"></em></a> <button project-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
+	    			"<em class=\"fa fa-pencil\"></em></a> <button id='delete-task-button' task-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
 	    		.append($("<td></td>").text(task.name))
 	    		.append($("<td></td>").text(task.developersId))
 	    		.append($("<td></td>").text(task.dateCreated))
@@ -68,6 +68,18 @@ $(document).ready(function() {
     $("#create-task-form").submit(function(e){
     	var task = createTask();
     	addTask(task);
+    })
+    
+    function deleteTask(id){
+    	return $.ajax(ENDPOINT_TASKS + "/" + id, {
+            method: "DELETE"
+        });
+    }
+    
+    $("#delete-task-button").click(function(){
+    	deleteTask($(this).attr("task-id")).then(function(response){
+    		displayTasks();
+    	})
     })
     
     /* DROPDOWN */
