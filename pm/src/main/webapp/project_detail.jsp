@@ -81,10 +81,10 @@
 						<button type="button"
 							class="btn btn-default dropdown-toggle form-control"
 							data-toggle="dropdown">
-							<span data-bind="label">Select type</span>&nbsp;<span
+							<span id="span-dropdown-create" data-bind="label">Select type</span>&nbsp;<span
 								class="caret"></span>
 						</button>
-						<ul class="dropdown-menu" role="menu" required>
+						<ul id="dropdown-create" class="dropdown-menu" role="menu" required>
 							<li><a href="#">Front-end</a></li>
 							<li><a href="#">Back-end</a></li>
 							<li><a href="#">Test</a></li>
@@ -98,6 +98,8 @@
 
 				<fieldset>
 					<legend>Task dates</legend>
+					<input type="date" value="2012-03-22" />
+					
 					<span class="input-group-addon">Date created</span> <input
 						id="date-created-create" type="date" class="form-control" /> <br>
 
@@ -122,6 +124,71 @@
 
 				<button class="btn btn-lg btn-primary btn-block"
 					type="submit">Create</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="edit-task-modal" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+	style="display: none;">
+	<div class="modal-dialog">
+		<div class="createmodal-container">
+			<form id="edit-task-form">
+				<fieldset>
+					<legend>Task name</legend>
+					<input id="task-name-edit" class="form-control" name="task-name"
+						type="text" required autofocus />
+				</fieldset>
+				
+				<fieldset>
+					<legend>Type</legend>
+
+					<div class="btn-group">
+						<button type="button"
+							class="btn btn-default dropdown-toggle form-control"
+							data-toggle="dropdown">
+							<span id="span-dropdown-edit" data-bind="label">Select type</span>&nbsp;<span
+								class="caret"></span>
+						</button>
+						<ul id="dropdown-edit" class="dropdown-menu" role="menu" required>
+							<li><a href="#">Front-end</a></li>
+							<li><a href="#">Back-end</a></li>
+							<li><a href="#">Test</a></li>
+							<li><a href="#">Bugfix</a></li>
+							<li><a href="#">Deployment</a></li>
+						</ul>
+					</div>
+					
+					<br>
+				</fieldset>
+
+				<fieldset>
+					<legend>Task dates</legend>
+					<span class="input-group-addon">Date created</span> <input
+						id="date-created-edit" type="date" class="form-control" /> <br>
+
+					<span class="input-group-addon">Date assigned</span> <input
+						id="date-assinged-edit" type="date" class="form-control" /> <br>
+						
+					<span class="input-group-addon">Date submitted</span> <input
+						id="date-submitted-edit" type="date" class="form-control" /> <br>
+						
+					<span class="input-group-addon">Date completed</span> <input
+						id="date-completed-edit" type="date" class="form-control" /> <br>
+
+					<span class="input-group-addon">Deadline</span> <input
+						id="deadline-edit" type="date" class="form-control" /> <br>
+				</fieldset>
+
+				<fieldset>
+					<legend>Developer</legend>
+
+					<input id="developer-edit" type="text" class="form-control"></input>
+				</fieldset>
+
+				<button class="btn btn-lg btn-primary btn-block"
+					type="submit">Edit</button>
 			</form>
 		</div>
 	</div>
