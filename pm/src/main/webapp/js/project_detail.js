@@ -11,12 +11,14 @@ $(document).ready(function() {
     	
     	var date_created = $("#date-created-create").val();
     	var date_assigned = $("#date-assinged-create").val();
+    	var date_submitted = $("#date-submitted-create").val();
+    	var date_completed = $("#date-completed-create").val();
     	var deadline = $("#deadline-create").val();
     	
     	var developer = $("#developer-create").val();
     	
     	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
-    			dateAssigned: date_assigned, deadline: deadline};
+    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
     	
     	return task;
     }
@@ -35,7 +37,6 @@ $(document).ready(function() {
 
     $("#create-task-form").submit(function(e){
     	var task = createTask();
-    	alert(task.name + " " + task.type);
     	addTask(task);
     })
     

@@ -83,7 +83,7 @@
 							<span data-bind="label">Select type</span>&nbsp;<span
 								class="caret"></span>
 						</button>
-						<ul class="dropdown-menu" role="menu">
+						<ul class="dropdown-menu" role="menu" required>
 							<li><a href="#">Front-end</a></li>
 							<li><a href="#">Back-end</a></li>
 							<li><a href="#">Test</a></li>
@@ -102,6 +102,12 @@
 
 					<span class="input-group-addon">Date assigned</span> <input
 						id="date-assinged-create" type="date" class="form-control" /> <br>
+						
+					<span class="input-group-addon">Date submitted</span> <input
+						id="date-submitted-create" type="date" class="form-control" /> <br>
+						
+					<span class="input-group-addon">Date completed</span> <input
+						id="date-completed-create" type="date" class="form-control" /> <br>
 
 					<span class="input-group-addon">Deadline</span> <input
 						id="deadline-create" type="date" class="form-control" /> <br>
