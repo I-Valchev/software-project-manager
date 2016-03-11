@@ -2,6 +2,8 @@ $(document).ready(function() {
     "use strict";
     
     var ENDPOINT_TASKS = "http://localhost:3000/tasks";
+    var DETAIL_PROJECT_URL = "detailProjectDisplay";
+    var PROJECT_ID = null;
     
     var tasks_table = $("#tasks-table");
     
@@ -44,12 +46,18 @@ $(document).ready(function() {
 		});
 	}
 	
+    function listTasks(project_id) {
+        return $.ajax(ENDPOINT_TASKS + "/" + project_id, {
+            method: "GET",
+            dataType: "json"
+        });
+    }
+	
 	function clearTable(){
     	tasks_table.children('tbody').empty();
     }
 	
 	function addTaskToTable(task){
-		task.id = 1;
 		tasks_table.children('tbody').append($("<tr></tr>")
 	    		.append($("<td align=\"center\"><button id='edit-task-button' task-id="+task.id+" data-toggle=\"modal\" data-target=\"#edit-task-modal\" class=\"btn btn-default\">" + 
 	    			"<em class=\"fa fa-pencil\"></em></button> <button id='delete-task-button' task-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
@@ -62,8 +70,8 @@ $(document).ready(function() {
 	    		.append($("<td></td>").text(task.deadline)));
 	}
 	
-	function displayTasks(){
-	    listTasks().then(function(response){
+	function displayTasks(project_id){
+	    listTasks(project_id).then(function(response){
 	    	clearTable();
 	    	
 	    	$(response).each(function(index, obj){
@@ -85,7 +93,7 @@ $(document).ready(function() {
     
     $("#delete-task-button").click(function(){
     	deleteTask($(this).attr("task-id")).then(function(response){
-    		displayTasks();
+    		displayTasks(PROJECT_ID);
     	})
     })
     
@@ -149,6 +157,21 @@ $(document).ready(function() {
     $("#edit-task-button").click(function(){
     	editTask(fakeTask)
     })
+    
+    function getProjectIdFromURL(){
+    	
+    	if(window.location.href.indexOf(DETAIL_PROJECT_URL) != -1)
+    		return window.location.href.substr(window.location.href.indexOf(DETAIL_PROJECT_URL)+DETAIL_PROJECT_URL.length +1)
+    	return null
+    }
+    
+    function handleDetailedProject(){
+    	PROJECT_ID = getProjectIdFromURL();
+    	if(PROJECT_ID != null)
+    		displayTasks(PROJECT_ID);
+    }
+    
+    handleDetailedProject();
     
     /* DROPDOWN */
     

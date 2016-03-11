@@ -18,8 +18,8 @@ $(document).ready(function() {
     
     function addProjectToTable(index, project){
     	projects_table.children('tbody').append($("<tr></tr>")
-    		.append($("<td align=\"center\"><a class=\"btn btn-default\">" + 
-    			"<em class=\"fa fa-pencil\"></em></a> <button project-id="+index+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
+    		.append($("<td align=\"center\"><a href='project_detail.jsp' id='info-project-button' project-id=" + project.id + " class=\"btn btn-default\">" + 
+    			"<em class=\"fa fa-info-circle\"></em></a> <button project-id="+project.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
     		.append($("<td></td>").text(project.projectManagerId))
     		.append($("<td></td>").text(project.developerIds))
     		.append($("<td></td>").text(project.taskIds)));
@@ -35,10 +35,9 @@ $(document).ready(function() {
     	});
     }
     
-    var project = {projectManagerId: 1, developersIds: [1,2], taskIds: [1,2]};
+    var project = {id: 5, projectManagerId: 1, developersIds: [1,2], taskIds: [1,2]};
     
     addProjectToTable(15,project);
-    
     
     function deleteProject(id) {
         return $.ajax(ENDPOINT_PROJECTS + "/" + id, {
@@ -51,6 +50,18 @@ $(document).ready(function() {
     	deleteProject($(this).attr("project-id")).then(function(response){
     		displayProjects();
     	})
+    })
+    
+    $("#info-project-button").click(function(e){
+    	e.preventDefault();
+    	
+//    	window.location = $(this).attr("href") + "#" + $(this).attr("project-id");
+    	
+    	var object = {"detailProjectDisplay": $(this).attr("project-id")}
+    	
+    	var location_string = $(this).attr("href") + "?" + $.param(object, true);
+    	
+    	window.location = location_string;
     })
     
     $("#create_project_form").submit(function(e){
