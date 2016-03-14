@@ -8,10 +8,15 @@ $(document).ready(function() {
     var tasks_table = $("#tasks-table");
     
     function createTask(){
-    	
+    	var projectId = PROJECT_ID;
     	var name = $("#task-name-create").val();
     	
-    	var type = $('#span-dropdown-create [data-bind="label"]').text();
+//    	var type = $('#span-dropdown-create [data-bind="label"]').text();
+    	
+    	var type = document.getElementById("span-dropdown-create");
+    	console.log(type)
+    	
+    	
     	
     	var date_created = $("#date-created-create").val();
     	var date_assigned = $("#date-assinged-create").val();
@@ -22,7 +27,7 @@ $(document).ready(function() {
     	var developer = $("#developer-create").val();
     	
     	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
-    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
+    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline, projectId: projectId};
     	
     	return task;
     }
@@ -46,11 +51,14 @@ $(document).ready(function() {
 		});
 	}
 	
-    function listTasks(project_id) {
-        return $.ajax(ENDPOINT_TASKS + "/" + project_id, {
-            method: "GET",
-            dataType: "json"
-        });
+    function listTasks(project_id) {       
+        return $.ajax(ENDPOINT_TASKS, {
+			method: "GET",
+			data: {
+				projectId: project_id
+			},
+			dataType: "json"
+		});
     }
 	
 	function clearTable(){
@@ -137,6 +145,7 @@ $(document).ready(function() {
     }
     
     function editTask(task){
+    	alert("Task: " + task.name)
     	$("#task-name-edit").val(task.name);
     	
     	$('#span-dropdown-edit [data-bind="label"]').text(task.type);
@@ -154,9 +163,12 @@ $(document).ready(function() {
     	})
     }
     
-    $("#edit-task-button").click(function(){
-    	editTask(fakeTask)
-    })
+    $(document).on("click", "#edit-task-button", function(e){
+    	var taskId = $(this).attr("task-id");
+    	getTask(taskId).then(function(response){
+    		editTask(response);
+    	});
+	});
     
     function getProjectIdFromURL(){
     	
