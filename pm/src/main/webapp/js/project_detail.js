@@ -10,14 +10,7 @@ $(document).ready(function() {
     function createTask(){
     	var projectId = PROJECT_ID;
     	var name = $("#task-name-create").val();
-    	
-//    	var type = $('#span-dropdown-create [data-bind="label"]').text();
-    	
-    	var type = document.getElementById("span-dropdown-create");
-    	console.log(type)
-    	
-    	
-    	
+    	var type = $('#span-dropdown-create').text();
     	var date_created = $("#date-created-create").val();
     	var date_assigned = $("#date-assinged-create").val();
     	var date_submitted = $("#date-submitted-create").val();
@@ -31,8 +24,8 @@ $(document).ready(function() {
     	
     	return task;
     }
-    
-	function addTask(task){
+
+    function addTask(task){
     	var createPromise = $.ajax(ENDPOINT_TASKS, {
     		method: "POST",
     		contentType: "application/json; charset=utf-8",
@@ -89,8 +82,10 @@ $(document).ready(function() {
 	}
 
     $("#create-task-form").submit(function(e){
+    	e.preventDefault();
     	var task = createTask();
     	addTask(task);
+    	$("#create-task-modal").modal('hide');
     })
     
     function deleteTask(id){
@@ -145,7 +140,6 @@ $(document).ready(function() {
     }
     
     function editTask(task){
-    	alert("Task: " + task.name)
     	$("#task-name-edit").val(task.name);
     	
     	$('#span-dropdown-edit [data-bind="label"]').text(task.type);
