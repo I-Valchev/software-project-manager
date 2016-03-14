@@ -35,10 +35,6 @@ $(document).ready(function() {
     	});
     }
     
-    var project = {id: 5, projectManagerId: 1, developersIds: [1,2], taskIds: [1,2]};
-    
-    addProjectToTable(15,project);
-    
     function deleteProject(id) {
         return $.ajax(ENDPOINT_PROJECTS + "/" + id, {
             method: "DELETE"
@@ -51,18 +47,13 @@ $(document).ready(function() {
     		displayProjects();
     	})
     })
-    
-    $("#info-project-button").click(function(e){
+
+    $(document).on("click", "#info-project-button", function(e){
     	e.preventDefault();
-    	
-//    	window.location = $(this).attr("href") + "#" + $(this).attr("project-id");
-    	
     	var object = {"detailProjectDisplay": $(this).attr("project-id")}
-    	
     	var location_string = $(this).attr("href") + "?" + $.param(object, true);
-    	
     	window.location = location_string;
-    })
+	});
     
     $("#create_project_form").submit(function(e){
     	var project_name = $("#project_name_create").val();
