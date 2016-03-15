@@ -93,12 +93,12 @@ $(document).ready(function() {
             method: "DELETE"
         });
     }
-    
-    $("#delete-task-button").click(function(){
+
+    $(document).on("click", "#delete-task-button", function(){
     	deleteTask($(this).attr("task-id")).then(function(response){
     		displayTasks(PROJECT_ID);
     	})
-    })
+	});
     
     function updateTask(task){
     	$.ajax(ENDPOINT_TASKS + "/" + task.id, {
@@ -141,8 +141,7 @@ $(document).ready(function() {
     
     function editTask(task){
     	$("#task-name-edit").val(task.name);
-    	
-    	$('#span-dropdown-edit [data-bind="label"]').text(task.type);
+    	$('#span-dropdown-edit').text(task.type);
     	$("#date-created-edit").val(task.dateCreated);
     	$("#date-assinged-edit").val(task.dateAssigned);
         $("#date-submitted-edit").val(task.dateSubmitted);

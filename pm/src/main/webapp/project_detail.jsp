@@ -77,14 +77,14 @@
 				<fieldset>
 					<legend>Type</legend>
 
-					<div class="btn-group">
+					<div class="btn-group" >
 						<button type="button"
 							class="btn btn-default dropdown-toggle form-control"
 							data-toggle="dropdown">
-							<span id="span-dropdown-create" data-bind="label">Select type</span>&nbsp;<span
+							<span id="span-dropdown-create" data-bind="label" >Select type</span>&nbsp;<span
 								class="caret"></span>
 						</button>
-						<ul id="dropdown-create" class="dropdown-menu" role="menu" required>
+						<ul id="dropdown-create" class="dropdown-menu" role="menu">
 							<li><a href="#">Front-end</a></li>
 							<li><a href="#">Back-end</a></li>
 							<li><a href="#">Test</a></li>
@@ -98,28 +98,26 @@
 
 				<fieldset>
 					<legend>Task dates</legend>
-					<input type="date" value="2012-03-22" />
-					
 					<span class="input-group-addon">Date created</span> <input
-						id="date-created-create" type="date" class="form-control" /> <br>
+						id="date-created-create" type="date" class="form-control" required /> <br>
 
 					<span class="input-group-addon">Date assigned</span> <input
-						id="date-assinged-create" type="date" class="form-control" /> <br>
+						id="date-assinged-create" type="date" class="form-control" required /> <br>
 						
 					<span class="input-group-addon">Date submitted</span> <input
-						id="date-submitted-create" type="date" class="form-control" /> <br>
+						id="date-submitted-create" type="date" class="form-control" required /> <br>
 						
 					<span class="input-group-addon">Date completed</span> <input
-						id="date-completed-create" type="date" class="form-control" /> <br>
+						id="date-completed-create" type="date" class="form-control" required /> <br>
 
 					<span class="input-group-addon">Deadline</span> <input
-						id="deadline-create" type="date" class="form-control" /> <br>
+						id="deadline-create" type="date" class="form-control" required /> <br>
 				</fieldset>
 
 				<fieldset>
 					<legend>Developer</legend>
 
-					<input id="developer-create" type="text" class="form-control"></input>
+					<input id="developer-create" type="text" class="form-control" required></input>
 				</fieldset>
 
 				<button class="btn btn-lg btn-primary btn-block"
