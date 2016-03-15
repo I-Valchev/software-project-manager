@@ -196,20 +196,16 @@
 	style="display: none;">
 	<div class="modal-dialog">
 		<div class="createmodal-container">
-			
-			<!-- /row -->
 			<div class="row">
-				
 				<div class="col-sm-10">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<strong>Username</strong> <span class="text-muted">commented on 01/01/01</span>
+							<strong id="comment-creator-username"></strong> <span class="text-muted" id="date-commented"></span>
 						</div>
-						<div class="panel-body">I'm writing a comment to the task</div>
+						<div class="panel-body" id="comment-body"></div>
 					</div>
 				</div>
 			</div>
-			<!-- /row -->
 		</div>
 	</div>
 </div>

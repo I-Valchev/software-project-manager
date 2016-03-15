@@ -2,6 +2,7 @@ $(document).ready(function() {
     "use strict";
     
     var ENDPOINT_TASKS = "http://localhost:3000/tasks";
+    var ENDPOINT_COMMENTS = "http://localhost:3000/taskcomments";
     var DETAIL_PROJECT_URL = "detailProjectDisplay";
     var PROJECT_ID = null;
     
@@ -163,6 +164,23 @@ $(document).ready(function() {
     		editTask(response);
     	});
 	});
+    
+    function getTasksComments(taskId){
+    	return $.ajax(ENDPOINT_COMMENTS, {
+			method: "GET",
+			data: {
+				tasksId: taskId
+			},
+			dataType: "json"
+		});
+    }
+    
+    $(document).on("click", "#comments-task-button", function(e){
+    	var taskId = $("this").attr("data-task-id");
+    	getTaskComments(taskId).then(function(response){
+    		addComment(response);
+    	})
+    })
     
     function getProjectIdFromURL(){
     	
