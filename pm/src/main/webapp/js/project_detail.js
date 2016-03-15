@@ -8,6 +8,11 @@ $(document).ready(function() {
     
     var tasks_table = $("#tasks-table");
     
+    function endpointTask(id){
+    	return ENDPOINT_TASKS = "http://localhost:3000/tasks" + "/" + id;
+    }
+    
+    
     function createTask(){
     	var projectId = PROJECT_ID;
     	var name = $("#task-name-create").val();
@@ -39,7 +44,7 @@ $(document).ready(function() {
     }
 	
 	function getTask(id){
-		return $.ajax(ENDPOINT_TASKS + "/" + id, {
+		return $.ajax(endpointTasks(id), {
 			method: "GET",
 			dataType: "json"
 		});
@@ -91,7 +96,7 @@ $(document).ready(function() {
     })
     
     function deleteTask(id){
-    	return $.ajax(ENDPOINT_TASKS + "/" + id, {
+    	return $.ajax(endpointTask(id), {
             method: "DELETE"
         });
     }
@@ -103,7 +108,7 @@ $(document).ready(function() {
 	});
     
     function updateTask(task){
-    	$.ajax(ENDPOINT_TASKS + "/" + task.id, {
+    	$.ajax(endpointTask(task.id), {
     		method: "PUT",
     		contentType: "application/json; charset=utf-8",
     		data: JSON.stringify({
