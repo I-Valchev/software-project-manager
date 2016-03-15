@@ -54,7 +54,6 @@ $(document).ready(function() {
     	
     	var tasks_column = $("<td></td>");
     	tasks_column.text(project.taskIds);
-    	alert(project.taskIds)
     	
     	row.append(action_column);
     	row.append(project_manager_column);
