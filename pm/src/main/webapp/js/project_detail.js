@@ -60,9 +60,10 @@ $(document).ready(function() {
 	
 	function addTaskToTable(task){
 		tasks_table.children('tbody').append($("<tr></tr>")
-	    		.append($("<td align=\"center\"><button id='edit-task-button' task-id="+task.id+" data-toggle=\"modal\" data-target=\"#edit-task-modal\" class=\"btn btn-default\">" + 
-	    			"<em class=\"fa fa-pencil\"></em></button> <button id='delete-task-button' task-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
+	    		.append($("<td align=\"center\"><button id='comments-task-button' data-toggle=\"modal\" data-target=\"#comments-modal\" data-task-id="+task.id+" class='btn btn-default'><em class='fa fa-commenting'></em></button> <button id='edit-task-button' data-task-id="+task.id+" data-toggle=\"modal\" data-target=\"#edit-task-modal\" class=\"btn btn-default\">" + 
+	    			"<em class=\"fa fa-pencil\"></em></button> <button id='delete-task-button' data-task-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
 	    		.append($("<td></td>").text(task.name))
+	    		.append($("<td></td>").text(task.type))
 	    		.append($("<td></td>").text(task.developersId))
 	    		.append($("<td></td>").text(task.dateCreated))
 	    		.append($("<td></td>").text(task.dateAssigned))
@@ -95,7 +96,7 @@ $(document).ready(function() {
     }
 
     $(document).on("click", "#delete-task-button", function(){
-    	deleteTask($(this).attr("task-id")).then(function(response){
+    	deleteTask($(this).attr("data-task-id")).then(function(response){
     		displayTasks(PROJECT_ID);
     	})
 	});
@@ -157,7 +158,7 @@ $(document).ready(function() {
     }
     
     $(document).on("click", "#edit-task-button", function(e){
-    	var taskId = $(this).attr("task-id");
+    	var taskId = $(this).attr("data-task-id");
     	getTask(taskId).then(function(response){
     		editTask(response);
     	});

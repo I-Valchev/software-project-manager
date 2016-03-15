@@ -27,18 +27,20 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<table id="tasks-table" class="table table-striped table-bordered table-list"
+					<table id="tasks-table"
+						class="table table-striped table-bordered table-list"
 						id="project_table_detail">
 						<thead>
 							<tr>
 								<th class="col-md-1"><em class="fa fa-cog"></em></th>
 								<th class="hidden-xs col-md-1">Task</th>
-								<th class="hidden-xs col-md-1">Developer</th>
-								<th class="col-md-2">Date created</th>
-								<th class="col-md-2">Date assigned</th>
-								<th class="col-md-2">Date submitted</th>
-								<th class="col-md-2">Date completed</th>
-								<th class="col-md-1">Deadline</th>
+								<th class="col-md-1">Type</th>
+								<th class="hidden-xs col-md-1">Dev</th>
+								<th class="col-md-1">Created</th>
+								<th class="col-md-1">Assigned</th>
+								<th class="col-md-2">Submitted</th>
+								<th class="col-md-2">Completed</th>
+								<th class="col-md-2">Deadline</th>
 							</tr>
 						</thead>
 						<tbody id="tasks-list">
@@ -49,9 +51,9 @@
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col col-md-2 col-md-offset-10">
-							<button id="create-task" type="button" class="btn btn-sm btn-primary btn-create"
-								data-toggle="modal" data-target="#create-task-modal">New
-								Task</button>
+							<button id="create-task" type="button"
+								class="btn btn-sm btn-primary btn-create" data-toggle="modal"
+								data-target="#create-task-modal">New Task</button>
 						</div>
 					</div>
 				</div>
@@ -73,16 +75,16 @@
 					<input id="task-name-create" class="form-control" name="task-name"
 						type="text" required autofocus />
 				</fieldset>
-				
+
 				<fieldset>
 					<legend>Type</legend>
 
-					<div class="btn-group" >
+					<div class="btn-group">
 						<button type="button"
 							class="btn btn-default dropdown-toggle form-control"
 							data-toggle="dropdown">
-							<span id="span-dropdown-create" data-bind="label" >Select type</span>&nbsp;<span
-								class="caret"></span>
+							<span id="span-dropdown-create" data-bind="label">Select
+								type</span>&nbsp;<span class="caret"></span>
 						</button>
 						<ul id="dropdown-create" class="dropdown-menu" role="menu">
 							<li><a href="#">Front-end</a></li>
@@ -92,43 +94,41 @@
 							<li><a href="#">Deployment</a></li>
 						</ul>
 					</div>
-					
+
 					<br>
 				</fieldset>
 
 				<fieldset>
 					<legend>Task dates</legend>
 					<span class="input-group-addon">Date created</span> <input
-						id="date-created-create" type="date" class="form-control" required /> <br>
-
-					<span class="input-group-addon">Date assigned</span> <input
-						id="date-assinged-create" type="date" class="form-control" required /> <br>
-						
-					<span class="input-group-addon">Date submitted</span> <input
-						id="date-submitted-create" type="date" class="form-control" required /> <br>
-						
-					<span class="input-group-addon">Date completed</span> <input
-						id="date-completed-create" type="date" class="form-control" required /> <br>
-
-					<span class="input-group-addon">Deadline</span> <input
-						id="deadline-create" type="date" class="form-control" required /> <br>
+						id="date-created-create" type="date" class="form-control" required />
+					<br> <span class="input-group-addon">Date assigned</span> <input
+						id="date-assinged-create" type="date" class="form-control"
+						required /> <br> <span class="input-group-addon">Date
+						submitted</span> <input id="date-submitted-create" type="date"
+						class="form-control" required /> <br> <span
+						class="input-group-addon">Date completed</span> <input
+						id="date-completed-create" type="date" class="form-control"
+						required /> <br> <span class="input-group-addon">Deadline</span>
+					<input id="deadline-create" type="date" class="form-control"
+						required /> <br>
 				</fieldset>
 
 				<fieldset>
 					<legend>Developer</legend>
 
-					<input id="developer-create" type="text" class="form-control" required></input>
+					<input id="developer-create" type="text" class="form-control"
+						required></input>
 				</fieldset>
 
-				<button class="btn btn-lg btn-primary btn-block"
-					type="submit">Create</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
 			</form>
 		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="edit-task-modal" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+<div class="modal fade" id="edit-task-modal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true"
 	style="display: none;">
 	<div class="modal-dialog">
 		<div class="createmodal-container">
@@ -138,7 +138,7 @@
 					<input id="task-name-edit" class="form-control" name="task-name"
 						type="text" required autofocus />
 				</fieldset>
-				
+
 				<fieldset>
 					<legend>Type</legend>
 
@@ -146,8 +146,8 @@
 						<button type="button"
 							class="btn btn-default dropdown-toggle form-control"
 							data-toggle="dropdown">
-							<span id="span-dropdown-edit" data-bind="label">Select type</span>&nbsp;<span
-								class="caret"></span>
+							<span id="span-dropdown-edit" data-bind="label">Select
+								type</span>&nbsp;<span class="caret"></span>
 						</button>
 						<ul id="dropdown-edit" class="dropdown-menu" role="menu" required>
 							<li><a href="#">Front-end</a></li>
@@ -157,7 +157,7 @@
 							<li><a href="#">Deployment</a></li>
 						</ul>
 					</div>
-					
+
 					<br>
 				</fieldset>
 
@@ -168,10 +168,10 @@
 
 					<span class="input-group-addon">Date assigned</span> <input
 						id="date-assinged-edit" type="date" class="form-control" /> <br>
-						
+
 					<span class="input-group-addon">Date submitted</span> <input
 						id="date-submitted-edit" type="date" class="form-control" /> <br>
-						
+
 					<span class="input-group-addon">Date completed</span> <input
 						id="date-completed-edit" type="date" class="form-control" /> <br>
 
@@ -185,9 +185,31 @@
 					<input id="developer-edit" type="text" class="form-control"></input>
 				</fieldset>
 
-				<button class="btn btn-lg btn-primary btn-block"
-					type="submit">Edit</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
 			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="comments-modal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true"
+	style="display: none;">
+	<div class="modal-dialog">
+		<div class="createmodal-container">
+			
+			<!-- /row -->
+			<div class="row">
+				
+				<div class="col-sm-10">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong>Username</strong> <span class="text-muted">commented on 01/01/01</span>
+						</div>
+						<div class="panel-body">I'm writing a comment to the task</div>
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
 		</div>
 	</div>
 </div>
