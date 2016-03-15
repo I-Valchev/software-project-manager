@@ -16,13 +16,49 @@ $(document).ready(function() {
     	projects_table.children('tbody').empty();
     }
     
-    function addProjectToTable(index, project){
-    	projects_table.children('tbody').append($("<tr></tr>")
-    		.append($("<td align=\"center\"><a href='project_detail.jsp' id='info-project-button' project-id=" + project.id + " class=\"btn btn-default\">" + 
-    			"<em class=\"fa fa-info-circle\"></em></a> <button id='delete-project-button' project-id="+project.id+" class=\"btn btn-danger \"><em class=\"fa fa-trash\"></em></button></td>"))
-    		.append($("<td></td>").text(project.projectManagerId))
-    		.append($("<td></td>").text(project.developerIds))
-    		.append($("<td></td>").text(project.taskIds)));
+    function addProjectToTable(project){
+    	var row = $("<tr></tr>");
+    	var action_column = $("<td></td>");
+    	action_column.attr("align", "center");
+    	
+    	
+    	var anchor_info = $("<a></a>");
+    	anchor_info.attr("href", "project_detail.jsp");
+    	anchor_info.attr("id", "info-project-button");
+    	anchor_info.attr("project-id", project.id);
+    	anchor_info.attr("class", "btn btn-default");
+    	var em_info = $("<em></em>");
+    	em_info.attr("class", "fa fa-info-circle");
+    	anchor_info.append(em_info);
+    	
+    	var delete_button = $("<button></button>");
+    	delete_button.attr("id", "delete-project-button");
+    	delete_button.attr("project-id", project.id);
+    	delete_button.attr("class", "btn btn-danger");
+    	var em_delete = $("<em></em>");
+    	em_delete.attr("class", "fa fa-trash");
+    	delete_button.append(em_delete);
+    	
+    	action_column.append(anchor_info);
+    	action_column.append(delete_button);
+
+    	var project_manager_column = $("<td></td>");
+    	project_manager_column.text(project.projectManagerId);
+    	
+    	var developers_column = $("<td></td>");
+    	developers_column.text(project.developerIds);
+    	
+    	var tasks_column = $("<td></td>");
+    	tasks_column.text(project.taskIds);
+    	alert(project.taskIds)
+    	
+    	row.append(action_column);
+    	row.append(project_manager_column);
+    	row.append(developers_column);
+    	row.append(tasks_column);
+    	
+    	projects_table.children('tbody').append(row);
+    	
     }
     
     function displayProjects(){
@@ -30,7 +66,7 @@ $(document).ready(function() {
     		clearTable();
     		
     		$(response).each(function(index, obj){
-    			addProjectToTable(index, obj);
+    			addProjectToTable(obj);
     		});
     	});
     }
