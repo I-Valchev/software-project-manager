@@ -165,22 +165,35 @@ $(document).ready(function() {
     	});
 	});
     
-    function getTasksComments(taskId){
-    	return $.ajax(ENDPOINT_COMMENTS, {
+    function listTaskComments(task_id) {       
+        return $.ajax(ENDPOINT_COMMENTS, {
 			method: "GET",
 			data: {
-				tasksId: taskId
+				tasksId: task_id
 			},
 			dataType: "json"
 		});
     }
     
     $(document).on("click", "#comments-task-button", function(e){
-    	var taskId = $("this").attr("data-task-id");
-    	getTaskComments(taskId).then(function(response){
-    		addComment(response);
+    	var taskId = $(this).attr("data-task-id");
+    	listTaskComments(taskId).then(function(response){
+    		clearComments();
+	    	
+	    	$(response).each(function(index, obj){
+	    		console.log(obj);
+	    		addComment(obj);
+	    	});
     	})
     })
+    
+    function clearComments(){
+    	$("#comment-row").empty();
+    }
+    
+    function addComment(comment){
+    	$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+comment.usersId+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
+    }
     
     function getProjectIdFromURL(){
     	
