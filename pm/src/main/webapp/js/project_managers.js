@@ -17,6 +17,7 @@ $(document).ready(function() {
     }
     
     function addProjectManagerToContent(projectManager){
+    	//TODO Needs better refactor (some bootstrap design isn't working perfeclty)
     	var main_div = $("<div class='col-xs-12 col-sm-6 col-md-6'></div>");
     	var well_div = $("<div class='well well-sm'></div>");
     	
