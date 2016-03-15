@@ -63,19 +63,39 @@ $(document).ready(function() {
 	function clearTable(){
     	tasks_table.children('tbody').empty();
     }
-	
+
 	function addTaskToTable(task){
-		tasks_table.children('tbody').append($("<tr></tr>")
-	    		.append($("<td align=\"center\"><button id='comments-task-button' data-toggle=\"modal\" data-target=\"#comments-modal\" data-task-id="+task.id+" class='btn btn-default'><em class='fa fa-commenting'></em></button> <button id='edit-task-button' data-task-id="+task.id+" data-toggle=\"modal\" data-target=\"#edit-task-modal\" class=\"btn btn-default\">" + 
-	    			"<em class=\"fa fa-pencil\"></em></button> <button id='delete-task-button' data-task-id="+task.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
-	    		.append($("<td></td>").text(task.name))
-	    		.append($("<td></td>").text(task.type))
-	    		.append($("<td></td>").text(task.developersId))
-	    		.append($("<td></td>").text(task.dateCreated))
-	    		.append($("<td></td>").text(task.dateAssigned))
-	    		.append($("<td></td>").text(task.dateSubmitted))
-	    		.append($("<td></td>").text(task.dateCompleted))
-	    		.append($("<td></td>").text(task.deadline)));
+		var action_column = $("<td align='center'></td>");
+		
+		var comments_button = $("<button id='comments-task-button' data-toggle='modal' data-target='#comments-modal' class='btn btn-default></button>");
+		comments_button.attr("data-task-id", task.id);
+		var em_comment_icon = $("<em class='fa fa-commenting'></em>");
+		comments_button.append(em_comment_icon);
+		action_column.append(comments_button);
+		
+		var edit_button = $("<button id='edit-task-button' data-toggle='modal' data-target='#edit-task-modal' class='btn btn-default'></button>");
+		var em_edit_icon = $("<em class='fa fa-pencil'></em>");
+		edit_button.attr("data-task-id", task.id);
+		edit_button.append(em_edit_icon);
+		action_column.append(edit_button);
+		
+		var delete_button = $("<button id='delete-task-button' class='btn btn-danger'></button>");
+		delete_button.attr("data-task-id", task.id);
+		var em_delete_icon = $("<em class='fa fa-trash'></em>");
+		delete_button.append(em_delete_icon);
+		action_column.append(delete_button);
+		
+		tasks_table.children('tbody')
+			.append($("<tr></tr>")
+			.append(action_column)
+    		.append($("<td></td>").text(task.name))
+    		.append($("<td></td>").text(task.type))
+    		.append($("<td></td>").text(task.developersId))
+    		.append($("<td></td>").text(task.dateCreated))
+    		.append($("<td></td>").text(task.dateAssigned))
+    		.append($("<td></td>").text(task.dateSubmitted))
+    		.append($("<td></td>").text(task.dateCompleted))
+    		.append($("<td></td>").text(task.deadline)));
 	}
 	
 	function displayTasks(project_id){
