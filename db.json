@@ -35,32 +35,42 @@
   "taskcomments": [
     {
       "id": 1,
-      "date": "2016-01-01T09:00:00.321-10:00",
+      "date": "01/01/2016",
       "content": "Example content of a task comment",
-      "usersId": 1
+      "usersId": 1,
+      "tasksId": 1
     }
   ],
   "tasks": [
     {
-      "id": 1,
-      "name": "My example task",
-      "type": "test",
-      "projectId": 1,
-      "taskCommentIds": [
-        1
-      ],
-      "developersId": 1,
-      "dateCreated": "2016-01-01T09:00:00.321-10:00",
-      "dateAssigned": "2016-01-01T09:00:00.321-10:00",
-      "dateSubmitted": "2016-01-01T09:00:00.321-10:00",
-      "dateCompleted": "2016-01-01T09:00:00.321-10:00",
-      "deadline": "2016-01-01T09:00:00.321-10:00"
+      "name": "MyTask",
+      "type": "Test",
+      "developersId": "",
+      "dateCreated": "2016-03-16",
+      "dateAssigned": "2016-03-17",
+      "dateSubmitted": "2016-03-18",
+      "dateCompleted": "2016-03-20",
+      "deadline": "2016-03-29",
+      "projectId": 2,
+      "id": 1
+    },
+    {
+      "name": "Task2",
+      "type": "Back-end",
+      "developersId": "",
+      "dateCreated": "2016-03-16",
+      "dateAssigned": "2016-03-17",
+      "dateSubmitted": "2016-03-18",
+      "dateCompleted": "2016-03-19",
+      "deadline": "2016-03-20",
+      "projectId": 2,
+      "id": 2
     }
   ],
   "projects": [
     {
       "id": 1,
-      "name": "MyProj",
+      "name": "Real project",
       "projectManagerId": 2,
       "developerIds": [
         1
@@ -69,6 +79,12 @@
         1
       ],
       "status": true
+    },
+    {
+      "projectManagerId": 1,
+      "name": "Auto created",
+      "status": false,
+      "id": 2
     }
   ]
 }
