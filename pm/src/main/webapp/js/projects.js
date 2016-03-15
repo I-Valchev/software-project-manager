@@ -19,7 +19,7 @@ $(document).ready(function() {
     function addProjectToTable(index, project){
     	projects_table.children('tbody').append($("<tr></tr>")
     		.append($("<td align=\"center\"><a href='project_detail.jsp' id='info-project-button' project-id=" + project.id + " class=\"btn btn-default\">" + 
-    			"<em class=\"fa fa-info-circle\"></em></a> <button project-id="+project.id+" class=\"btn btn-danger delete_button\"><em class=\"fa fa-trash\"></em></button></td>"))
+    			"<em class=\"fa fa-info-circle\"></em></a> <button id='delete-project-button' project-id="+project.id+" class=\"btn btn-danger \"><em class=\"fa fa-trash\"></em></button></td>"))
     		.append($("<td></td>").text(project.projectManagerId))
     		.append($("<td></td>").text(project.developerIds))
     		.append($("<td></td>").text(project.taskIds)));
@@ -40,13 +40,12 @@ $(document).ready(function() {
             method: "DELETE"
         });
     }
-
     
-    $("tbody .delete_button").click(function(){
+    $(document).on("click", "#delete-project-button", function(){
     	deleteProject($(this).attr("project-id")).then(function(response){
     		displayProjects();
     	})
-    })
+	});
 
     $(document).on("click", "#info-project-button", function(e){
     	e.preventDefault();
