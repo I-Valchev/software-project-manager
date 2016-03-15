@@ -44,7 +44,7 @@ $(document).ready(function() {
     }
 	
 	function getTask(id){
-		return $.ajax(endpointTasks(id), {
+		return $.ajax(endpointTask(id), {
 			method: "GET",
 			dataType: "json"
 		});
@@ -112,6 +112,7 @@ $(document).ready(function() {
     	e.preventDefault();
     	var task = createTask();
     	addTask(task);
+    	//TODO Clear all fields after submit
     	$("#create-task-modal").modal('hide');
     })
     
@@ -175,6 +176,9 @@ $(document).ready(function() {
     	$("#date-completed-edit").val(task.dateCompleted);
     	$("#deadline-edit").val(task.deadline);
     	$("#developer-edit").val(task.developersId);
+    	
+    	//TODO prevent submit and read values instead
+    	//TODO clear all fields after reading the values
     	
     	$("#edit-task-form").submit(function(e){
     		var new_task = getEditedTask();
