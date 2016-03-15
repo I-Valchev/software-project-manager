@@ -5,6 +5,10 @@ $(document).ready(function() {
     
     var projects_table = $("#projects_table");
     
+    function projectEndpoint(id){
+    	return ENDPOINT_PROJECTS + "/" + id
+    }
+    
     function listProjects() {
         return $.ajax(ENDPOINT_PROJECTS, {
             method: "GET",
@@ -72,7 +76,7 @@ $(document).ready(function() {
     }
     
     function deleteProject(id) {
-        return $.ajax(ENDPOINT_PROJECTS + "/" + id, {
+        return $.ajax(projectEndpoint(id), {
             method: "DELETE"
         });
     }
