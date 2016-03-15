@@ -192,7 +192,11 @@ $(document).ready(function() {
     }
     
     function addComment(comment){
-    	$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+comment.usersId+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
+    	requestUser(comment.usersId).then(function(response){
+    		
+    		$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+response.username+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
+    	})
+    	
     }
     
     function getProjectIdFromURL(){
