@@ -212,4 +212,6 @@
 	</div>
 </div>
 
+<script src="js/project_detail.js"></script>
+
 <%@include file="footer.html"%>

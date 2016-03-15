@@ -76,5 +76,5 @@
 	</div>
 </div>
 
-
+<script src="js/projects.js"></script>
 <%@include file="footer.html"%>

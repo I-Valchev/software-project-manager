@@ -49,4 +49,5 @@
 	</section>
 </div>
 
+<script src="js/users.js"></script>
 <%@include file="footer.html"%>

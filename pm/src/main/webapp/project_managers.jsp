@@ -11,5 +11,5 @@
 	</div>
 </div>
 
-
+<script src="js/project_managers.js"></script>
 <%@include file="footer.html"%>
