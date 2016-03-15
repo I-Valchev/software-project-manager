@@ -45,7 +45,7 @@ $(document).ready(function() {
     	var projects_dropdown = $("<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>");
     	var ul_dropdown = $("<ul class='dropdown-menu' role='menu' id='list-projects'></ul>");
     	
-    	buttons.append(projecs_button);
+    	buttons.append(projects_button);
     	buttons.append(projects_dropdown);
     	buttons.append(ul_dropdown);
     	body_div.append(buttons);
@@ -54,6 +54,8 @@ $(document).ready(function() {
     	
     	well_div.append(row_div);
     	main_div.append(well_div);
+    	
+    	$("#project_managers_content").append(main_div);
     	
     	//TODO change project_link to build link to detailed project
     	var project_link = ENDPOINT_PROJECT_MANAGERS+'/'+ projectManager.id;
