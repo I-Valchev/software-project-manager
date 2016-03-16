@@ -97,17 +97,21 @@ $(document).ready(function() {
 		delete_button.append(em_delete_icon);
 		action_column.append(delete_button);
 		
-		tasks_table.children('tbody')
-			.append($("<tr></tr>")
-			.append(action_column)
-    		.append($("<td></td>").text(task.name))
-    		.append($("<td></td>").text(task.type))
-    		.append($("<td></td>").text(task.developersId))
-    		.append($("<td></td>").text(task.dateCreated))
-    		.append($("<td></td>").text(task.dateAssigned))
-    		.append($("<td></td>").text(task.dateSubmitted))
-    		.append($("<td></td>").text(task.dateCompleted))
-    		.append($("<td></td>").text(task.deadline)));
+		getDeveloper(task.developersId).then(function(developer){
+			getUser(developer.usersId).then(function(user){
+				tasks_table.children('tbody')
+				.append($("<tr></tr>")
+				.append(action_column)
+				.append($("<td></td>").text(task.name))
+				.append($("<td></td>").text(task.type))
+				.append($("<td></td>").text(user.username))
+				.append($("<td></td>").text(task.dateCreated))
+				.append($("<td></td>").text(task.dateAssigned))
+				.append($("<td></td>").text(task.dateSubmitted))
+				.append($("<td></td>").text(task.dateCompleted))
+				.append($("<td></td>").text(task.deadline)));
+			})
+		})
 	}
 	
 	function displayTasks(project_id){
