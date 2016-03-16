@@ -97,13 +97,29 @@
 
 					<br>
 				</fieldset>
+				
+				<fieldset>
+					<legend>Developer</legend>
+					
+					<div class="btn-group">
+						<button type="button"
+							class="btn btn-default dropdown-toggle form-control"
+							data-toggle="dropdown">
+							<span id="span-dropdown-developers-create" data-bind="label">Select
+								dev</span>&nbsp;<span class="caret"></span>
+						</button>
+						<ul id="dropdown-developers-create" class="dropdown-menu" role="menu">
+
+						</ul>
+					</div>
+				</fieldset>
 
 				<fieldset>
 					<legend>Task dates</legend>
 					<span class="input-group-addon">Date created</span> <input
 						id="date-created-create" type="date" class="form-control" required />
 					<br> <span class="input-group-addon">Date assigned</span> <input
-						id="date-assinged-create" type="date" class="form-control"
+						id="date-assigned-create" type="date" class="form-control"
 						required /> <br> <span class="input-group-addon">Date
 						submitted</span> <input id="date-submitted-create" type="date"
 						class="form-control" required /> <br> <span
@@ -112,13 +128,6 @@
 						required /> <br> <span class="input-group-addon">Deadline</span>
 					<input id="deadline-create" type="date" class="form-control"
 						required /> <br>
-				</fieldset>
-
-				<fieldset>
-					<legend>Developer</legend>
-
-					<input id="developer-create" type="text" class="form-control"
-						required></input>
 				</fieldset>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>

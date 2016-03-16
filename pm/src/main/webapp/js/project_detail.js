@@ -14,7 +14,7 @@ $(document).ready(function() {
     
     
     function createTask(){
-    	var projectId = PROJECT_ID;
+    	var projectId = Number(PROJECT_ID);
     	var name = $("#task-name-create").val();
     	var type = $('#span-dropdown-create').text();
     	var date_created = $("#date-created-create").val();
@@ -23,7 +23,8 @@ $(document).ready(function() {
     	var date_completed = $("#date-completed-create").val();
     	var deadline = $("#deadline-create").val();
     	
-    	var developer = $("#developer-create").val();
+    	var developer = $("#span-dropdown-developers-create").attr("data-developer-id");
+    	developer = Number(developer);
     	
     	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
     			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline, projectId: projectId};
@@ -35,8 +36,8 @@ $(document).ready(function() {
     	$("#date-submitted-create").val("");
     	$("#date-completed-create").val("");
     	$("#deadline-create").val("");
-    	$("#developer-create").val("");
-    	
+    	$("#span-dropdown-developers-create").text("Select dev");
+    	$("#dropdown-developers-create").empty();
     	//TODO Developer should be dropdown, not text input field
     	
     	return task;
@@ -126,6 +127,30 @@ $(document).ready(function() {
     	$("#create-task-modal").modal('hide');
     })
     
+    $("#create-task").click(function(){
+    	getDevelopers().then(function(response){
+        		
+        	function addDeveloperToList(developer){
+        		getUser(developer.usersId).then(function(response){
+        			var list_developers = $("#dropdown-developers-create");
+        			
+        			var li = $("<li></li>");
+        			li.attr("data-developer-id", developer.id);
+        			
+        			var anchor =$("<a href='#'></a>");
+        			anchor.text(response.username);
+        			li.append(anchor);
+       				list_developers.append(li);
+       				
+       			})
+       		}
+        		
+       		$(response).each(function(index, obj){
+   	    		addDeveloperToList(obj);
+   	    	});
+       	});
+    });
+    
     function deleteTask(id){
     	return $.ajax(endpointTask(id), {
             method: "DELETE"
@@ -154,7 +179,6 @@ $(document).ready(function() {
     		}),
     		dataType: "json"
     	}).then(function(response) {
-    		console.log(response);
     	});
     }
     
@@ -270,7 +294,6 @@ $(document).ready(function() {
     		$("#comments-modal").attr("data-task-id", taskId);
 	    	
 	    	$(response).each(function(index, obj){
-	    		console.log(obj);
 	    		addCommentToModal(obj);
 	    	});
     	})
@@ -376,6 +399,20 @@ $(document).ready(function() {
 
      });
 
+    /* DROPDOWN */
+    
+    $(document.body).on('click', '#dropdown-developers-create li', function(event) {
+
+        var $target = $(event.currentTarget);
+        $target.closest('.btn-group')
+           .find('[data-bind="label"]').text($target.text())
+           .attr("data-developer-id", $target.attr("data-developer-id"))
+           .end()
+           .children('.dropdown-toggle').dropdown('toggle');
+
+        return false;
+
+     });
     
     /* DROPDOWN */
     
