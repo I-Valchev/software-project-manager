@@ -57,6 +57,22 @@
 					<input id="project_name_create" class="form-control" name="project-name" type="text"
 						required autofocus />
 				</fieldset>
+				
+				<fieldset>
+					<legend>Developer</legend>
+					
+					<div class="btn-group">
+						<button type="button"
+							class="btn btn-default dropdown-toggle form-control"
+							data-toggle="dropdown">
+							<span id="span-dropdown-developers" data-bind="label">Select
+								type</span>&nbsp;<span class="caret"></span>
+						</button>
+						<ul id="dropdown-developers" class="dropdown-menu" role="menu">
+
+						</ul>
+					</div>
+				</fieldset>
 
 				<fieldset>
 					<legend>Project status</legend>
@@ -69,12 +85,6 @@
 
 				</fieldset>
 				
-				<fieldset>
-					<legend>Developer</legend>
-						
-					<div id="list-developers-div" class='btn-group'></div>
-				</fieldset>
-	
 				<button class="btn btn-lg btn-primary btn-block" type="submit">
 					Create</button>
 			</form>

@@ -95,26 +95,22 @@ $(document).ready(function() {
     
     $("#create-project-button").click(function(){
     	
-    	var list_developers_div = $("#list-developers-div");
-    	var developers_button = $("<button type='button' class='btn btn-primary'>Developers</button>");
-    	var developers_dropdown = $("<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'></button>");
-    	var ul_dropdown = $("<ul class='dropdown-menu' role='menu' id='list-developers'></ul>");
-    	
-    	list_developers_div.append(developers_button);
-    	list_developers_div.append(developers_dropdown);
-    	list_developers_div.append(ul_dropdown);
-    	
+    	var list_developers = $("#dropdown-developers");
+    
     	getDevelopers().then(function(response){
     		
     		function addDeveloperToList(developer){
-    			alert("Appending: " + developer.id);
-    			
     			getUser(developer.userId).then(function(response){
     				
-    				var anchor_developer = $("<a id='get-developer'></a>");
-    				anchor_developer.attr("data-developer-id", developer.id);
-    				anchor_developer.text(response.username)
-    				$(document.getElementById("list-developers")).append($('<li></li>').append(anchor_developer));
+    				var li = $("<li></li>");
+    				li.attr("data-developer-id", developer.id);
+    				
+    				var anchor =$("<a href='#'></a>");
+    				anchor.text(response.username);
+    				li.append(anchor);
+
+    				list_developers.append(li);
+    				
     			})
     		}
     		
@@ -141,6 +137,21 @@ $(document).ready(function() {
     		return response;
     	});
     })
+
+    /* DROPDOWN */
+    
+    $(document.body).on('click', '#dropdown-developers li', function(event) {
+
+        var $target = $(event.currentTarget);
+        $target.closest('.btn-group')
+           .find('[data-bind="label"]').text($target.text())
+           .attr("data-developer-id", $target.attr("data-developer-id"))
+           .end()
+           .children('.dropdown-toggle').dropdown('toggle');
+
+        return false;
+
+     });
     
     displayProjects();
 });
