@@ -123,7 +123,6 @@ $(document).ready(function() {
     	e.preventDefault();
     	var task = createTask();
     	addTask(task);
-    	//TODO Clear all fields after submit
     	$("#create-task-modal").modal('hide');
     })
     
@@ -179,6 +178,7 @@ $(document).ready(function() {
     }
     
     function editTask(task){
+    	//TODO Developer should be dropdown, not text input field
     	$("#task-name-edit").val(task.name);
     	$('#span-dropdown-edit').text(task.type);
     	$("#date-created-edit").val(task.dateCreated);
@@ -188,13 +188,20 @@ $(document).ready(function() {
     	$("#deadline-edit").val(task.deadline);
     	$("#developer-edit").val(task.developersId);
     	
-    	//TODO prevent submit and read values instead
-    	//TODO clear all fields after reading the values
-    	
     	$("#edit-task-form").submit(function(e){
+    		e.preventDefault();
     		var new_task = getEditedTask();
     		new_task.id = task.id;
     		updateTask(new_task);
+    		
+        	$("#task-name-edit").val("");
+        	$('#span-dropdown-edit').text("");
+        	$("#date-created-edit").val("");
+        	$("#date-assinged-edit").val("");
+            $("#date-submitted-edit").val("");
+        	$("#date-completed-edit").val("");
+        	$("#deadline-edit").val("");
+        	$("#developer-edit").val("");
     	})
     }
     
