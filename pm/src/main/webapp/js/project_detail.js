@@ -18,7 +18,7 @@ $(document).ready(function() {
     	var name = $("#task-name-create").val();
     	var type = $('#span-dropdown-create').text();
     	var date_created = $("#date-created-create").val();
-    	var date_assigned = $("#date-assinged-create").val();
+    	var date_assigned = $("#date-assigned-create").val();
     	var date_submitted = $("#date-submitted-create").val();
     	var date_completed = $("#date-completed-create").val();
     	var deadline = $("#deadline-create").val();
@@ -31,7 +31,7 @@ $(document).ready(function() {
     	$("#task-name-create").val("");
     	$('#span-dropdown-create').text("Select type")
     	$("#date-created-create").val("");
-    	$("#date-assinged-create").val("");
+    	$("#date-assigned-create").val("");
     	$("#date-submitted-create").val("");
     	$("#date-completed-create").val("");
     	$("#deadline-create").val("");
@@ -146,7 +146,7 @@ $(document).ready(function() {
     			name: task.name,
     			type: task.type,
     			dateCreated: task.dateCreated,
-    			dateAssigned: task.DateAssigne,
+    			dateAssigned: task.dateAssigned,
     			dateSubmitted: task.dateSubmitted,
     			dateCompleted: task.dateCompleted,
     			deadline: task.deadline,
@@ -161,24 +161,20 @@ $(document).ready(function() {
     function getEditedTask(){
     	var name = $("#task-name-edit").val();
     	
-    	var type = $('#span-dropdown-edit [data-bind="label"]').text();
-    	
+    	var type = $('#span-dropdown-edit').text();
     	var date_created = $("#date-created-edit").val();
     	var date_assigned = $("#date-assigned-edit").val();
     	var date_submitted = $("#date-submitted-edit").val();
     	var date_completed = $("#date-completed-edit").val();
     	var deadline = $("#deadline-edit").val();
-    	
     	var developer = $("#span-dropdown-developers-edit").attr("data-developer-id");
-    		
-    	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
-    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
-    	
+
+    	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
+
     	return task;
     }
     
     function editTask(task){
-    	
     	function addDeveloperToEdit(task, developerId){
     		getDevelopers().then(function(response){
         		
@@ -205,7 +201,7 @@ $(document).ready(function() {
         		getDeveloper(developerId).then(function(response){
         			getUser(response.usersId).then(function (user){
         				$("#span-dropdown-developers-edit").attr("data-developer-id", developerId);
-        				$("#span-dropdown-developers-edit").attr("data-developer-id", user.username);
+        				$("#span-dropdown-developers-edit").text(user.username);
         			})
         		})
         		
@@ -223,26 +219,29 @@ $(document).ready(function() {
     	$("#deadline-edit").val(task.deadline);
     	addDeveloperToEdit(task, task.developersId);
 
-    	$("#edit-task-form").submit(function(e){
-    		e.preventDefault();
-    		var new_task = getEditedTask();
-    		new_task.id = task.id;
-    		updateTask(new_task);
-    		
-        	$("#task-name-edit").val("");
-        	$('#span-dropdown-edit').text("Select type");
-        	$("#date-created-edit").val("");
-        	$("#date-assigned-edit").val("");
-            $("#date-submitted-edit").val("");
-        	$("#date-completed-edit").val("");
-        	$("#deadline-edit").val("");
-        	$("#developer-edit").text("Select dev");
-        	
-        	$("#edit-task-modal").modal('hide');
-    	})
     }
     
+    $("#edit-task-form").submit(function(e){
+		e.preventDefault();
+		var new_task = getEditedTask();
+		new_task.id = $("#edit-task-button").attr("data-task-id");;
+		updateTask(new_task);
+		
+    	$("#task-name-edit").val("");
+    	$('#span-dropdown-edit').text("Select type");
+    	$("#date-created-edit").val("");
+    	$("#date-assigned-edit").val("");
+        $("#date-submitted-edit").val("");
+    	$("#date-completed-edit").val("");
+    	$("#deadline-edit").val("");
+    	$("#developer-edit").text("Select dev");
+    	$("#dropdown-developers-edit").empty();
+    	
+    	$("#edit-task-modal").modal('hide');
+	})
+    
     $(document).on("click", "#edit-task-button", function(e){
+    	e.preventDefault();
     	var taskId = $(this).attr("data-task-id");
     	getTask(taskId).then(function(response){
     		editTask(response);
