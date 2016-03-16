@@ -224,27 +224,76 @@ $(document).ready(function() {
     
     $(document).on("click", "#comments-task-button", function(e){
     	var taskId = $(this).attr("data-task-id");
+    	fillCommentsForTask(taskId);
+    })
+    
+    function fillCommentsForTask(taskId){
     	listTaskComments(taskId).then(function(response){
     		clearComments();
+    		
+    		$("#comments-modal").attr("data-task-id", taskId);
 	    	
 	    	$(response).each(function(index, obj){
 	    		console.log(obj);
-	    		addComment(obj);
+	    		addCommentToModal(obj);
 	    	});
     	})
-    })
+    }
     
     function clearComments(){
     	$("#comments-row").empty();
+    	$("#new-comment-content").val("");
     }
     
-    function addComment(comment){
+    function addCommentToModal(comment){
     	getUser(comment.usersId).then(function(response){
     		
     		$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+response.username+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
     	})
     	
     }
+    
+    function addComment(comment_content, taskId){
+    	
+    	function getCurrentDate(){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
+            var today = dd+'/'+mm+'/'+yyyy;
+            
+            return today;
+    	}
+    	
+
+    	//TODO Get current user posting the comment
+    	var new_comment = {date: getCurrentDate(), content:comment_content, tasksId: taskId, usersId: 1};
+    	
+    	return $.ajax(ENDPOINT_COMMENTS, {
+    		method: "POST",
+    		contentType: "application/json; charset=utf-8",
+    		data: JSON.stringify(new_comment),
+    		dataType: "json"
+    	})
+    }
+    
+    $(document).on("click", "#new-comment-button", function(e){
+    	e.preventDefault();
+    	
+    	var comment_content = $("#new-comment-content").val();
+    	var taskId = $("#comments-modal").attr("data-task-id");
+    	addComment(comment_content, taskId).then(function(){
+    		fillCommentsForTask(taskId);
+    	});
+    	
+    });
     
     function getProjectIdFromURL(){
     	

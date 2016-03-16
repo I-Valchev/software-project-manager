@@ -196,8 +196,14 @@
 	style="display: none;">
 	<div class="modal-dialog">
 		<div class="createmodal-container">
-			<div class="row" id="comments-row">
-			</div>
+			<div class="row" id="comments-row"></div>
+
+			<form>
+				<div class="form-group">
+					<label>Comment:</label> <input required type="text" class="form-control" id="new-comment-content">
+					<button id="new-comment-button" class="btn btn-default btn-block" type="submit">Add comment</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
