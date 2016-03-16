@@ -28,5 +28,5 @@ function getDeveloper(id){
 		method : "GET",
 		dataType : "json"
 	});
-
 }
+

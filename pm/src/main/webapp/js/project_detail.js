@@ -164,13 +164,13 @@ $(document).ready(function() {
     	var type = $('#span-dropdown-edit [data-bind="label"]').text();
     	
     	var date_created = $("#date-created-edit").val();
-    	var date_assigned = $("#date-assinged-edit").val();
+    	var date_assigned = $("#date-assigned-edit").val();
     	var date_submitted = $("#date-submitted-edit").val();
     	var date_completed = $("#date-completed-edit").val();
     	var deadline = $("#deadline-edit").val();
     	
-    	var developer = $("#developer-edit").val();
-    	
+    	var developer = $("#span-dropdown-developers-edit").attr("data-developer-id");
+    		
     	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
     			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
     	
@@ -178,16 +178,51 @@ $(document).ready(function() {
     }
     
     function editTask(task){
+    	
+    	function addDeveloperToEdit(task, developerId){
+    		getDevelopers().then(function(response){
+        		
+        		function addDeveloperToList(developer){
+        			getUser(developer.usersId).then(function(response){
+        				var list_developers = $("#dropdown-developers-edit");
+        				
+        				var li = $("<li></li>");
+        				li.attr("data-developer-id", developerId);
+        				
+        				var anchor =$("<a href='#'></a>");
+        				anchor.text(response.username);
+        				li.append(anchor);
+
+        				list_developers.append(li);
+        				
+        			})
+        		}
+        		
+        		$(response).each(function(index, obj){
+    	    		addDeveloperToList(obj);
+    	    	});
+        		
+        		getDeveloper(developerId).then(function(response){
+        			getUser(response.usersId).then(function (user){
+        				$("#span-dropdown-developers-edit").attr("data-developer-id", developerId);
+        				$("#span-dropdown-developers-edit").attr("data-developer-id", user.username);
+        			})
+        		})
+        		
+        		$("#span-dropdown-developers-edit").attr("data-developer-id", developerId);
+        	});
+		}
+    	
     	//TODO Developer should be dropdown, not text input field
     	$("#task-name-edit").val(task.name);
     	$('#span-dropdown-edit').text(task.type);
     	$("#date-created-edit").val(task.dateCreated);
-    	$("#date-assinged-edit").val(task.dateAssigned);
+    	$("#date-assigned-edit").val(task.dateAssigned);
         $("#date-submitted-edit").val(task.dateSubmitted);
     	$("#date-completed-edit").val(task.dateCompleted);
     	$("#deadline-edit").val(task.deadline);
-    	$("#developer-edit").val(task.developersId);
-    	
+    	addDeveloperToEdit(task, task.developersId);
+
     	$("#edit-task-form").submit(function(e){
     		e.preventDefault();
     		var new_task = getEditedTask();
@@ -195,13 +230,15 @@ $(document).ready(function() {
     		updateTask(new_task);
     		
         	$("#task-name-edit").val("");
-        	$('#span-dropdown-edit').text("");
+        	$('#span-dropdown-edit').text("Select type");
         	$("#date-created-edit").val("");
-        	$("#date-assinged-edit").val("");
+        	$("#date-assigned-edit").val("");
             $("#date-submitted-edit").val("");
         	$("#date-completed-edit").val("");
         	$("#deadline-edit").val("");
-        	$("#developer-edit").val("");
+        	$("#developer-edit").text("Select dev");
+        	
+        	$("#edit-task-modal").modal('hide');
     	})
     }
     
@@ -325,4 +362,34 @@ $(document).ready(function() {
 
      });
     
+    /* DROPDOWN */
+    
+    $(document.body).on('click', '#dropdown-edit li', function(event) {
+
+        var $target = $(event.currentTarget);
+
+        $target.closest('.btn-group')
+           .find('[data-bind="label"]').text($target.text())
+           .end()
+           .children('.dropdown-toggle').dropdown('toggle');
+
+        return false;
+
+     });
+
+    
+    /* DROPDOWN */
+    
+    $(document.body).on('click', '#dropdown-developers-edit li', function(event) {
+
+        var $target = $(event.currentTarget);
+        $target.closest('.btn-group')
+           .find('[data-bind="label"]').text($target.text())
+           .attr("data-developer-id", $target.attr("data-developer-id"))
+           .end()
+           .children('.dropdown-toggle').dropdown('toggle');
+
+        return false;
+
+     });
 });

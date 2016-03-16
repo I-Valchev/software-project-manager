@@ -100,7 +100,7 @@ $(document).ready(function() {
     	getDevelopers().then(function(response){
     		
     		function addDeveloperToList(developer){
-    			getUser(developer.userId).then(function(response){
+    			getUser(developer.usersId).then(function(response){
     				
     				var li = $("<li></li>");
     				li.attr("data-developer-id", developer.id);

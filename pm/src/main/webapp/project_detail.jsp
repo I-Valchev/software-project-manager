@@ -138,6 +138,22 @@
 					<input id="task-name-edit" class="form-control" name="task-name"
 						type="text" required autofocus />
 				</fieldset>
+				
+				<fieldset>
+					<legend>Developer</legend>
+					
+					<div class="btn-group">
+						<button type="button"
+							class="btn btn-default dropdown-toggle form-control"
+							data-toggle="dropdown">
+							<span id="span-dropdown-developers-edit" data-bind="label">Select
+								dev</span>&nbsp;<span class="caret"></span>
+						</button>
+						<ul id="dropdown-developers-edit" class="dropdown-menu" role="menu">
+
+						</ul>
+					</div>
+				</fieldset>
 
 				<fieldset>
 					<legend>Type</legend>
@@ -149,7 +165,7 @@
 							<span id="span-dropdown-edit" data-bind="label">Select
 								type</span>&nbsp;<span class="caret"></span>
 						</button>
-						<ul id="dropdown-edit" class="dropdown-menu" role="menu" required>
+						<ul id="dropdown-edit" class="dropdown-menu" role="menu">
 							<li><a href="#">Front-end</a></li>
 							<li><a href="#">Back-end</a></li>
 							<li><a href="#">Test</a></li>
@@ -167,7 +183,7 @@
 						id="date-created-edit" type="date" class="form-control" /> <br>
 
 					<span class="input-group-addon">Date assigned</span> <input
-						id="date-assinged-edit" type="date" class="form-control" /> <br>
+						id="date-assigned-edit" type="date" class="form-control" /> <br>
 
 					<span class="input-group-addon">Date submitted</span> <input
 						id="date-submitted-edit" type="date" class="form-control" /> <br>
@@ -177,12 +193,6 @@
 
 					<span class="input-group-addon">Deadline</span> <input
 						id="deadline-edit" type="date" class="form-control" /> <br>
-				</fieldset>
-
-				<fieldset>
-					<legend>Developer</legend>
-
-					<input id="developer-edit" type="text" class="form-control"></input>
 				</fieldset>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
