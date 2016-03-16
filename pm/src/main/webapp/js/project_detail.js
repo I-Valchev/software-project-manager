@@ -235,7 +235,7 @@ $(document).ready(function() {
     })
     
     function clearComments(){
-    	$("#comment-row").empty();
+    	$("#comments-row").empty();
     }
     
     function addComment(comment){

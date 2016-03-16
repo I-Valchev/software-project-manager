@@ -197,16 +197,6 @@
 	<div class="modal-dialog">
 		<div class="createmodal-container">
 			<div class="row" id="comments-row">
-				<!--  
-				<div class="col-sm-10">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<strong id="comment-creator-username"></strong> <span class="text-muted" id="date-commented"></span>
-						</div>
-						<div class="panel-body" id="comment-body"></div>
-					</div>
-				</div>
-				-->
 			</div>
 		</div>
 	</div>
