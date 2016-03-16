@@ -93,6 +93,38 @@ $(document).ready(function() {
     	window.location = location_string;
 	});
     
+    $("#create-project-button").click(function(){
+    	
+    	var list_developers_div = $("#list-developers-div");
+    	var developers_button = $("<button type='button' class='btn btn-primary'>Developers</button>");
+    	var developers_dropdown = $("<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'></button>");
+    	var ul_dropdown = $("<ul class='dropdown-menu' role='menu' id='list-developers'></ul>");
+    	
+    	list_developers_div.append(developers_button);
+    	list_developers_div.append(developers_dropdown);
+    	list_developers_div.append(ul_dropdown);
+    	
+    	getDevelopers().then(function(response){
+    		
+    		function addDeveloperToList(developer){
+    			alert("Appending: " + developer.id);
+    			
+    			getUser(developer.userId).then(function(response){
+    				
+    				var anchor_developer = $("<a id='get-developer'></a>");
+    				anchor_developer.attr("data-developer-id", developer.id);
+    				anchor_developer.text(response.username)
+    				$(document.getElementById("list-developers")).append($('<li></li>').append(anchor_developer));
+    			})
+    		}
+    		
+    		$(response).each(function(index, obj){
+	    		addDeveloperToList(obj);
+	    	});
+    		
+    	});
+    })
+    
     $("#create_project_form").submit(function(e){
     	var project_name = $("#project_name_create").val();
     	var project_status = $("project_active_create").is(":checked");

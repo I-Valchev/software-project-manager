@@ -17,7 +17,7 @@
 							</h2>
 						</div>
 						<div class="col col-xs-6 text-right">
-							<button type="button" class="btn btn-sm btn-primary btn-create"
+							<button id="create-project-button" type="button" class="btn btn-sm btn-primary btn-create"
 								data-toggle="modal" data-target="#create-modal">Create
 								New</button>
 						</div>
@@ -59,7 +59,7 @@
 				</fieldset>
 
 				<fieldset>
-					<legend>Project status:</legend>
+					<legend>Project status</legend>
 
 					<label class="radio-inline"> <input type="radio" id="project_active_create"
 						name="radio_create_project" val="active" required>Active
@@ -68,7 +68,13 @@
 					</label>
 
 				</fieldset>
-
+				
+				<fieldset>
+					<legend>Developer</legend>
+						
+					<div id="list-developers-div" class='btn-group'></div>
+				</fieldset>
+	
 				<button class="btn btn-lg btn-primary btn-block" type="submit">
 					Create</button>
 			</form>
