@@ -28,6 +28,17 @@ $(document).ready(function() {
     	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
     			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline, projectId: projectId};
     	
+    	$("#task-name-create").val("");
+    	$('#span-dropdown-create').text("Select type")
+    	$("#date-created-create").val("");
+    	$("#date-assinged-create").val("");
+    	$("#date-submitted-create").val("");
+    	$("#date-completed-create").val("");
+    	$("#deadline-create").val("");
+    	$("#developer-create").val("");
+    	
+    	//TODO Developer should be dropdown, not text input field
+    	
     	return task;
     }
 
