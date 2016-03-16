@@ -2,19 +2,16 @@ $(document).ready(function() {
     "use strict";
     
     var ENDPOINT_USERS = "http://localhost:3000/users";
-    var ENDPOINT_PORJECT_MANAGERS = "http://localhost:3000/projectmanagers";
+    var ENDPOINT_PROJECT_MANAGERS = "http://localhost:3000/projectmanagers";
     var ENDPOINT_DEVELOPERS = "http://localhost:3000/developers";
 
     function addUser(user){    	    	
-    	var createPromise = $.ajax(ENDPOINT_USERS, {
+    	return $.ajax(ENDPOINT_USERS, {
     		method: "POST",
     		contentType: "application/json; charset=utf-8",
     		data: JSON.stringify(user),
     		dataType: "json"
-    	}).then(function(response) {
-    		console.log(response);
-    		return response;
-    	});
+    	})
     }
     
     function addProjectManager(userId){
@@ -29,11 +26,11 @@ $(document).ready(function() {
     	});
     }
     
-    function addDeveloper(userId){
+    function addDeveloper(developer){
     	var createPromise = $.ajax(ENDPOINT_DEVELOPERS, {
     		method: "POST",
     		contentType: "application/json; charset=utf-8",
-    		data: JSON.stringify(userId),
+    		data: JSON.stringify(developer),
     		dataType: "json"
     	}).then(function(response) {
     		console.log(response);
@@ -41,25 +38,27 @@ $(document).ready(function() {
     	});
     }
     
-    $("#register").click(function(){
-    	username = $("#username").val();
-    	password = $("#password").val();
-    	repeat_password = $("#repeat_password").val();
+    $("#register").click(function(e){
+    	e.preventDefault();
+    	var username = $("#username").val();
+    	var password = $("#password").val();
+    	var repeat_password = $("#repeat_password").val();
     	
     	var user = {
         		username: username,
         		password: password
         };
     	
-    	user = addUser(user);
-    	
-    	var val = $('#radio_pm').is(':checked');
-    	
-    	if(val == true){
-    		addProjectManager(user.id);
-    	}else{
-    		addDeveloper(user.id);
-    	}
-    	
+    	addUser(user).then(function(user){
+    		var val = $('#radio_pm').is(':checked');
+        	
+        	if(val == true){
+        		var developer = {usersId: user.id}
+        		addProjectManager(developer);
+        	}else{
+        		var project_manager = {usersId: user.id}
+        		addDeveloper(project_manager);
+        	}
+    	})
     })
 });
