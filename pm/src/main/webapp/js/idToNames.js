@@ -9,7 +9,14 @@ function endpointDevelopers(id){
 	return ENDPOINT_DEVELOPERS + "/" + id;
 }
 
-function requestUser(id) {
+function getDevelopers(){
+	return $.ajax(ENDPOINT_DEVELOPERS, {
+		method : "GET",
+		dataType : "json"
+	});
+}
+
+function getUser(id) {
 	return $.ajax(endpointUsers(id), {
 		method : "GET",
 		dataType : "json"
@@ -21,12 +28,5 @@ function getDeveloper(id){
 		method : "GET",
 		dataType : "json"
 	});
-}
 
-function getDeveloperUsername(developerId){
-	getDeveloper(developerId).then(function(response){
-		getUsers(response).then(function(user){
-			return user.username
-		})
-	})
 }

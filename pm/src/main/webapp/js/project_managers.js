@@ -43,7 +43,7 @@ $(document).ready(function() {
     	var buttons = $("<div class='btn-group'></div>");
     	
     	var projects_button = $("<button type='button' class='btn btn-primary'>Projects</button>");
-    	var projects_dropdown = $("<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>");
+    	var projects_dropdown = $("<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'></button>");
     	var ul_dropdown = $("<ul class='dropdown-menu' role='menu' id='list-projects'></ul>");
     	
     	buttons.append(projects_button);
