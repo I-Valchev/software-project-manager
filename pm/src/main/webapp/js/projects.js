@@ -122,10 +122,11 @@ $(document).ready(function() {
     })
     
     $("#create_project_form").submit(function(e){
+    	//TODO More than one developer per project
     	var project_name = $("#project_name_create").val();
-    	var project_status = $("project_active_create").is(":checked");
-    	
-    	var project = {projectManagerId: 1, name: project_name, status: project_status};
+    	var project_status = $("#project_active_create").is(":checked");
+    	var developer_id = $("#span-dropdown-developers").attr("data-developer-id");
+    	var project = {projectManagerId: 1, name: project_name, status: project_status, developerIds: developer_id};
 
     	var createPromise = $.ajax(ENDPOINT_PROJECTS, {
     		method: "POST",
