@@ -78,7 +78,7 @@ $(document).ready(function() {
 	function addTaskToTable(task){
 		var action_column = $("<td align='center'></td>");
 		
-		var comments_button = $("<button id='comments-task-button' data-toggle='modal' data-target='#comments-modal' class='btn btn-default></button>");
+		var comments_button = $("<button id='comments-task-button' data-toggle='modal' data-target='#comments-modal' class='btn btn-default'></button>");
 		comments_button.attr("data-task-id", task.id);
 		var em_comment_icon = $("<em class='fa fa-commenting'></em>");
 		comments_button.append(em_comment_icon);
@@ -239,7 +239,7 @@ $(document).ready(function() {
     }
     
     function addComment(comment){
-    	requestUser(comment.usersId).then(function(response){
+    	getUser(comment.usersId).then(function(response){
     		
     		$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+response.username+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
     	})
