@@ -47,7 +47,7 @@ $(document).ready(function() {
     	action_column.append(delete_button);
 
     	var project_manager_column = $("<td></td>");
-
+    	
     	getProjectManager(project.projectManagerId).then(function(response){
     		getUser(response.usersId).then(function(project_manager_user){
     			project_manager_column.text(project_manager_user.username);
@@ -55,7 +55,13 @@ $(document).ready(function() {
     	});
     	
     	var developers_column = $("<td></td>");
-    	developers_column.text(project.developerIds);
+
+    	getDeveloper(project.developerIds).then(function(response){
+    		alert('no error')
+    		getUser(response.usersId).then(function(developer_user){
+    			developers_column.text(developer_user.username);
+    		});
+    	});
     	
     	var tasks_column = $("<td></td>");
     	tasks_column.text(project.taskIds);
@@ -72,7 +78,7 @@ $(document).ready(function() {
     function displayProjects(){
     	listProjects().then(function(response){
     		clearTable();
-    		
+
     		$(response).each(function(index, obj){
     			addProjectToTable(obj);
     		});
@@ -103,7 +109,6 @@ $(document).ready(function() {
     	var list_developers = $("#dropdown-developers");
     
     	getDevelopers().then(function(response){
-    		
     		function addDeveloperToList(developer){
     			getUser(developer.usersId).then(function(response){
     				
@@ -131,7 +136,7 @@ $(document).ready(function() {
     	var project_name = $("#project_name_create").val();
     	var project_status = $("#project_active_create").is(":checked");
     	var developer_id = $("#span-dropdown-developers").attr("data-developer-id");
-    	var project = {projectManagerId: 1, name: project_name, status: project_status, developerIds: developer_id};
+    	var project = {projectManagerId: 2, name: project_name, status: project_status, developerIds: developer_id};
 
     	var createPromise = $.ajax(ENDPOINT_PROJECTS, {
     		method: "POST",
