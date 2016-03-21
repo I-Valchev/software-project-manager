@@ -16,7 +16,7 @@
   "developers": [
     {
       "id": 1,
-      "userId": 1,
+      "usersId": 1,
       "projectId": 1,
       "taskIds": [
         1
@@ -45,7 +45,7 @@
     {
       "name": "MyTask",
       "type": "Test",
-      "developersId": "",
+      "developersId": 1,
       "dateCreated": "2016-03-16",
       "dateAssigned": "2016-03-17",
       "dateSubmitted": "2016-03-18",
@@ -57,7 +57,7 @@
     {
       "name": "Task2",
       "type": "Back-end",
-      "developersId": "",
+      "developersId": 1,
       "dateCreated": "2016-03-16",
       "dateAssigned": "2016-03-17",
       "dateSubmitted": "2016-03-18",
@@ -81,7 +81,7 @@
       "status": true
     },
     {
-      "projectManagerId": 1,
+      "projectManagerId": 2,
       "name": "Auto created",
       "status": false,
       "id": 2
