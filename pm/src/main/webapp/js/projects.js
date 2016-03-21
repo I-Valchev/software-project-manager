@@ -56,10 +56,17 @@ $(document).ready(function() {
     	
     	var developers_column = $("<td></td>");
 
-    	getDeveloper(project.developerIds).then(function(response){
-    		alert('no error')
-    		getUser(response.usersId).then(function(developer_user){
-    			developers_column.text(developer_user.username);
+    	getDevelopersByProject(project.id).then(function(response){
+    		
+    		function addDeveloperUsername(response){
+	    		getUser(response.usersId).then(function(developer_user){
+	    			var new_text = developers_column.text().concat(" " + developer_user.username);
+	    			developers_column.text(new_text);
+	    		});
+    		}
+    		
+    		$(response).each(function(index, obj){
+    			addDeveloperUsername(obj);
     		});
     	});
     	
