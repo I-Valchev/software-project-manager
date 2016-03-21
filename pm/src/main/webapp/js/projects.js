@@ -47,7 +47,12 @@ $(document).ready(function() {
     	action_column.append(delete_button);
 
     	var project_manager_column = $("<td></td>");
-    	project_manager_column.text(project.projectManagerId);
+
+    	getProjectManager(project.projectManagerId).then(function(response){
+    		getUser(response.usersId).then(function(project_manager_user){
+    			project_manager_column.text(project_manager_user.username);
+    		});
+    	});
     	
     	var developers_column = $("<td></td>");
     	developers_column.text(project.developerIds);
