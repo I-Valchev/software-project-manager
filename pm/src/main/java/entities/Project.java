@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @NamedQueries({
 	@NamedQuery(name=Project.QUERY_ALL,
-		query = "SELECT t from Task t")
+		query = "SELECT t from Project t")
 })
 
 public class Project {
