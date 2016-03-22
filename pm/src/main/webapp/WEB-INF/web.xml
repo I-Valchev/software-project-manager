@@ -6,20 +6,19 @@
 	<display-name>Software Project Manager</display-name>
 	
 	<servlet>
-  	<description>JAR-RS</description>
-  	<servlet-name>JAR-RS Servlet</servlet-name>
-  	<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-  	
-  	<init-param>
-  		<param-name>com.sun.jersey.config.property.packages</param-name>
-  		<param-value>java.rest</param-value>
-  	</init-param>
-  	
-  	<load-on-startup>1</load-on-startup>
-  </servlet>
+		<servlet-name>REST</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>
+				rest
+			</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>JAR-RS Servlet</servlet-name>
+		<servlet-name>REST</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 	
