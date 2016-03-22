@@ -12,11 +12,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @NamedQueries({
-	@NamedQuery(name=Project.QUERY_ALL,
-		query = "SELECT t from ProjectManager t")
+	@NamedQuery(name=User.QUERY_ALL,
+		query = "SELECT t from User t")
 })
 
 public class User {
+	
+	public static final String QUERY_ALL = "usersAll";
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
