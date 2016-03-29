@@ -41,9 +41,6 @@ public class ProjectsService {
 			final TypedQuery<Project> query = em.createNamedQuery(Project.QUERY_ALL, Project.class);
 			return query.getResultList();
 		}finally{
-			if(em.getTransaction().isActive()){
-				em.getTransaction().rollback();
-			}
 			em.close();
 		}
 	}
@@ -57,9 +54,6 @@ public class ProjectsService {
 			}
 			return result;
 		}finally{
-			if(em.getTransaction().isActive()){
-				em.getTransaction().rollback();
-			}
 			em.close();
 		}
 	}
