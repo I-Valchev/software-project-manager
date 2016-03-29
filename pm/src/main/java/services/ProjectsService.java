@@ -63,4 +63,20 @@ public class ProjectsService {
 			em.close();
 		}
 	}
+	
+	public Project updateProject(Project project){
+		final EntityManager em = entityManagerService.createEntityManager();
+		try{
+			em.getTransaction().begin();
+			final Project result = em.merge(project);
+			em.getTransaction().commit();
+			
+			return result;
+		}finally{
+			if(em.getTransaction().isActive()){
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}
+	}
 }
