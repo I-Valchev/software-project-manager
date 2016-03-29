@@ -1,11 +1,10 @@
 package services;
 
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 
-import entities.Project;
+import entities.ProjectManager;
 
 
 @Singleton
@@ -17,14 +16,14 @@ public class ProjectManagersService {
 		this.entityManagerService = entityManagerService;
 	}
 
-	public Project createProject(Project project){
+	public ProjectManager createProject(ProjectManager projectManager){
 		final EntityManager em = entityManagerService.createEntityManager();
 		try{
 			em.getTransaction().begin();
-			em.persist(project);
+			em.persist(projectManager);
 			em.getTransaction().commit();
 			
-			return project;
+			return projectManager;
 		}finally {
 			if (em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
