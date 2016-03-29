@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import entities.Project;
 import entities.ProjectManager;
-import javassist.compiler.ast.Member;
+import services.ProjectManagersService;
 import services.ProjectsService;
 
 @Path("/projects")
@@ -47,8 +47,10 @@ public class ProjectRest {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Project createProject(Project project){
 		//TODO get current member after security
-		final List<ProjectManager> members = projectManagersService.getMembers();
+		final List<ProjectManager> members = projectManagersService.getProjectManagers();
 		project.setProjectManager(members.iterator().next());
+		
+		return project;
 	}
 	
 	@DELETE
