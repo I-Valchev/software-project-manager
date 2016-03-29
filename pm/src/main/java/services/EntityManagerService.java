@@ -13,7 +13,7 @@ public class EntityManagerService {
 	public EntityManagerService() {
 		//TODO what should be in
 		emf = Persistence.
-			createEntityManagerFactory("");
+			createEntityManagerFactory("pm-jpa");
 	}
 	
 	public EntityManager createEntityManager() {
