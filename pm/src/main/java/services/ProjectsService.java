@@ -47,4 +47,20 @@ public class ProjectsService {
 			em.close();
 		}
 	}
+	
+	public Project getProject(long projectId){
+		final EntityManager em = entityManagerService.createEntityManager();
+		try{
+			final Project result = em.find(Project.class, projectId);
+			if(result == null){
+				throw new IllegalArgumentException("No project with id: " + projectId);
+			}
+			return result;
+		}finally{
+			if(em.getTransaction().isActive()){
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}
+	}
 }
