@@ -1,10 +1,11 @@
+import services.EntityManagerService;
+import services.ProjectManagersService;
+import services.ProjectsService;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
-
-import services.EntityManagerService;
-import services.ProjectManagersService;
 
 public class PmServletContextListener extends GuiceServletContextListener {
 
@@ -16,8 +17,9 @@ public class PmServletContextListener extends GuiceServletContextListener {
 			injector = Guice.createInjector(new ServletModule() {
 				@Override
 				protected void configureServlets() {
-					bind(EntityManagerService.class);
+					bind(ProjectsService.class);
 					bind(ProjectManagersService.class);
+					bind(EntityManagerService.class);
 				}
 			});
 		}

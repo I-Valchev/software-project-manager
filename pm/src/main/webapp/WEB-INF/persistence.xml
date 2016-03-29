@@ -13,9 +13,9 @@
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:todolistdb;create=true"/>
-			<property name="javax.persistence.jdbc.user" value="todolistuser"/>
-			<property name="javax.persistence.jdbc.password" value="todolistpassword"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:pmdb;create=true"/>
+			<property name="javax.persistence.jdbc.user" value="pmpuser"/>
+			<property name="javax.persistence.jdbc.password" value="pmpassword"/>
 		
 			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
   			<property name="openjpa.jdbc.SynchronizeMappings"

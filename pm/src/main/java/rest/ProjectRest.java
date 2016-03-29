@@ -21,12 +21,12 @@ import services.ProjectsService;
 @Path("/projects")
 public class ProjectRest {
 	private final ProjectsService projectsService;
-	private final ProjectManagersService projectManagersService;
+	private final ProjectManagersService projectManagersService = null;
 	
 	@Inject
-	public ProjectRest(ProjectsService projectsService, ProjectManagersService projectManagersService){
+	public ProjectRest(ProjectsService projectsService){
 		this.projectsService = projectsService;
-		this.projectManagersService = projectManagersService;
+//		this.projectManagersService = projectManagersService;
 	}
 	
 	@GET
