@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -54,5 +55,19 @@ public class ProjectRest {
 	@Path("/{projectId}")
 	public void deleteProject(@PathParam("projectId") long projectId){
 		projectsService.deleteProject(projectId);
+	}
+	
+	@PUT
+	@Path("/{projectId}")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Project updateProject(@PathParam("projectId") long projectId, Project project){
+		final Project fromDb = projectsService.getProject(projectId);
+		fromDb.setName(project.getName());
+		fromDb.setDeveloper(project.getDeveloper());
+		fromDb.setProjectManager(project.getProjectManager());
+		fromDb.setStatus(project.getStatus());
+		
+		return projectsService.updateProject(fromDb);
 	}
 }

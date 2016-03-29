@@ -54,7 +54,7 @@ public class Project {
 		this.name = name;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
