@@ -79,4 +79,23 @@ public class ProjectsService {
 			em.close();
 		}
 	}
+	
+	public void deleteProject(long projectId){
+		final EntityManager em = entityManagerService.createEntityManager();
+		try{
+			em.getTransaction().begin();
+			final Project project = em.find(Project.class, projectId);
+			if(project == null){
+				throw new IllegalArgumentException("No project with id: " + projectId);
+			}
+			
+			em.remove(project);
+			em.getTransaction().commit();
+		}finally{
+			if(em.getTransaction().isActive()){
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}
+	}
 }
