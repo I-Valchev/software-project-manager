@@ -41,9 +41,20 @@ public class ProjectManagersService {
 			final TypedQuery<ProjectManager> query = em.createNamedQuery(ProjectManager.QUERY_ALL, ProjectManager.class);
 			return query.getResultList();
 		}finally {
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
+			em.close();
+		}
+	}
+	
+	public ProjectManager getProjectManager(long projectManagerId){
+		final EntityManager em = entityManagerService.createEntityManager();
+		try{
+			final ProjectManager result = em.find(ProjectManager.class, projectManagerId);
+			if(result == null){
+				throw new IllegalArgumentException("No project manager with id: " + projectManagerId);
 			}
+			
+			return result;
+		}finally {
 			em.close();
 		}
 	}
