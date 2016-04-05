@@ -23,6 +23,7 @@ public class Developer {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@Column(name="DEVELOPER_ID")
 	private long id;
 	
 	@Column(nullable = false)

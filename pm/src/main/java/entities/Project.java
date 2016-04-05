@@ -1,10 +1,13 @@
 package entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,6 +25,7 @@ public class Project {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@Column(name="PROJECT_ID")
 	private long id;
 	
 	@Column(nullable = false)
@@ -35,7 +39,10 @@ public class Project {
 	private ProjectManager projectManager;
 	
 	@Column(nullable = true)
-	@ManyToMany()
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="Developer_Project", 
+    	joinColumns=@JoinColumn(name="PROJECT_ID"),
+    	inverseJoinColumns=@JoinColumn(name="DEVELOPER_ID")) 
 	private Developer developer;
 
 	public long getId() {
