@@ -2,15 +2,14 @@ package entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -35,12 +34,14 @@ public class Project {
 	private boolean status;
 	
 	@Column(nullable = false)
-	@ManyToMany
+	@OneToOne
 	private ProjectManager projectManager;
 	
+	/*
 	@Column(nullable = true)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="projects")
 	private List<Developer> developers;
+	*/
 
 	public long getId() {
 		return id;
@@ -75,11 +76,13 @@ public class Project {
 	}
 
 	public List<Developer> getDevelopers() {
-		return developers;
+//	TODO: Get all developers for a project
+		return null;
 	}
 	
 	public void setDevelopers(List<Developer> developers){
-		this.developers = developers;
+//		this.developers = developers;
+	//TODO: Set all developers for a project
 	}
 	
 }

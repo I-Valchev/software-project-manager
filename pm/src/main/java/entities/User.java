@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 		query = "SELECT t from User t")
 })
 
+@Table(name="pmUser")
 public class User {
 	
 	public static final String QUERY_ALL = "usersAll";
