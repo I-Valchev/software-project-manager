@@ -15,18 +15,21 @@ import javax.ws.rs.core.MediaType;
 
 import entities.Project;
 import entities.ProjectManager;
+import services.DevelopersService;
 import services.ProjectManagersService;
 import services.ProjectsService;
 
 @Path("/projects")
 public class ProjectRest {
 	private final ProjectsService projectsService;
-	private final ProjectManagersService projectManagersService = null;
+	private final ProjectManagersService projectManagersService;
+	private final DevelopersService developersService;
 	
 	@Inject
-	public ProjectRest(ProjectsService projectsService){
+	public ProjectRest(ProjectsService projectsService, DevelopersService developersService, ProjectManagersService projectManagersService){
 		this.projectsService = projectsService;
-//		this.projectManagersService = projectManagersService;
+		this.developersService = developersService;
+		this.projectManagersService = projectManagersService;
 	}
 	
 	@GET
@@ -66,7 +69,7 @@ public class ProjectRest {
 	public Project updateProject(@PathParam("projectId") long projectId, Project project){
 		final Project fromDb = projectsService.getProject(projectId);
 		fromDb.setName(project.getName());
-		fromDb.setDevelopers(project.getDevelopers());
+		fromDb.setDevelopers(developersService.getDevelopersByProject(project));
 		fromDb.setProjectManager(project.getProjectManager());
 		fromDb.setStatus(project.getStatus());
 		

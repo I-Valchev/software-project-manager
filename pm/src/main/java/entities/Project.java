@@ -74,15 +74,15 @@ public class Project {
 	public void setProjectManager(ProjectManager projectManager) {
 		this.projectManager = projectManager;
 	}
+	
+	private List<Developer> developers;
 
 	public List<Developer> getDevelopers() {
-//	TODO: Get all developers for a project
-		return null;
+		return developers;
 	}
-	
-	public void setDevelopers(List<Developer> developers){
-//		this.developers = developers;
-	//TODO: Set all developers for a project
+
+	public void setDevelopers(List<Developer> developers) {
+		this.developers = developers;
 	}
 	
 }

@@ -15,12 +15,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @NamedQueries({
 	@NamedQuery(name=Developer.QUERY_ALL,
-		query = "SELECT t from Developer t")
+		query = "SELECT t from Developer t"),
+	@NamedQuery(name=Developer.QUERY_BY_PROJECT, query = "SELECT t from Developer t where t.project = :project")
 })
 
 public class Developer {
 	
 	public static final String QUERY_ALL = "developersAll";
+	public static final String QUERY_BY_PROJECT = "developersByProject";
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
