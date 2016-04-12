@@ -14,8 +14,18 @@
 				rest
 			</param-value>
         </init-param>
+        
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>PmApplication</param-value>
+        </init-param>
+        
         <load-on-startup>1</load-on-startup>
 	</servlet>
+	
+		<listener>
+	    <listener-class>PmServletContextListener</listener-class>
+	</listener>
 
 	<servlet-mapping>
 		<servlet-name>REST</servlet-name>

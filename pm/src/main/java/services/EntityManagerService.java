@@ -11,7 +11,6 @@ public class EntityManagerService {
 	private final EntityManagerFactory emf;
 
 	public EntityManagerService() {
-		//TODO what should be in
 		emf = Persistence.
 			createEntityManagerFactory("pm-jpa");
 	}
