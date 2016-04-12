@@ -2,11 +2,16 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -37,12 +42,6 @@ public class Project {
 	@OneToOne
 	private ProjectManager projectManager;
 	
-	/*
-	@Column(nullable = true)
-	@ManyToMany(mappedBy="projects")
-	private List<Developer> developers;
-	*/
-
 	public long getId() {
 		return id;
 	}
@@ -75,6 +74,11 @@ public class Project {
 		this.projectManager = projectManager;
 	}
 	
+	@JoinTable(
+			joinColumns = {	@JoinColumn(name = "project_id", referencedColumnName = "PROJECT_ID", nullable = false) }, 
+			inverseJoinColumns = {	@JoinColumn(name = "developer_id", referencedColumnName = "DEVELOPER_ID", nullable = false) }
+		)
+		@ManyToMany(targetEntity=Developer.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Developer> developers;
 
 	public List<Developer> getDevelopers() {
