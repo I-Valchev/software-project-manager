@@ -66,7 +66,7 @@ public class ProjectRest {
 	public Project updateProject(@PathParam("projectId") long projectId, Project project){
 		final Project fromDb = projectsService.getProject(projectId);
 		fromDb.setName(project.getName());
-		fromDb.setDeveloper(project.getDeveloper());
+		fromDb.setDevelopers(project.getDevelopers());
 		fromDb.setProjectManager(project.getProjectManager());
 		fromDb.setStatus(project.getStatus());
 		

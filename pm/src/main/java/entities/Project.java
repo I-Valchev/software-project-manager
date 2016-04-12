@@ -1,13 +1,13 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -40,10 +40,7 @@ public class Project {
 	
 	@Column(nullable = true)
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="Developer_Project", 
-    	joinColumns=@JoinColumn(name="PROJECT_ID"),
-    	inverseJoinColumns=@JoinColumn(name="DEVELOPER_ID")) 
-	private Developer developer;
+	private List<Developer> developers;
 
 	public long getId() {
 		return id;
@@ -77,11 +74,12 @@ public class Project {
 		this.projectManager = projectManager;
 	}
 
-	public Developer getDeveloper() {
-		return developer;
+	public List<Developer> getDevelopers() {
+		return developers;
 	}
-
-	public void setDeveloper(Developer developer) {
-		this.developer = developer;
+	
+	public void setDevelopers(List<Developer> developers){
+		this.developers = developers;
 	}
+	
 }
