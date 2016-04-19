@@ -1,7 +1,7 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_PROJECT_MANAGERS = "http://localhost:3000/projectmanagers";
+    var ENDPOINT_PROJECT_MANAGERS = "http://localhost:8080/pm/rest/projectmanagers";
     
     function listProjectManagers(){
     	return $.ajax(ENDPOINT_PROJECT_MANAGERS, {

@@ -1,9 +1,9 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_USERS = "http://localhost:3000/users";
-    var ENDPOINT_PROJECT_MANAGERS = "http://localhost:3000/projectmanagers";
-    var ENDPOINT_DEVELOPERS = "http://localhost:3000/developers";
+    var ENDPOINT_USERS = "http://localhost:8080/pm/rest/users";
+    var ENDPOINT_PROJECT_MANAGERS = "http://localhost:8080/pm/rest/projectmanagers";
+    var ENDPOINT_DEVELOPERS = "http://localhost:8080/pm/rest/developers";
 
     function addUser(user){    	    	
     	return $.ajax(ENDPOINT_USERS, {

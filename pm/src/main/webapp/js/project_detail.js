@@ -1,15 +1,15 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_TASKS = "http://localhost:3000/tasks";
-    var ENDPOINT_COMMENTS = "http://localhost:3000/taskcomments";
+    var ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks";
+    var ENDPOINT_COMMENTS = "http://localhost:8080/pm/rest/taskcomments";
     var DETAIL_PROJECT_URL = "detailProjectDisplay";
     var PROJECT_ID = null;
     
     var tasks_table = $("#tasks-table");
     
     function endpointTask(id){
-    	return ENDPOINT_TASKS = "http://localhost:3000/tasks" + "/" + id;
+    	return ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks" + "/" + id;
     }
     
     

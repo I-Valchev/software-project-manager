@@ -20,12 +20,12 @@ public class ProjectsService {
 	
 	public Project createProject(Project project){
 		final EntityManager em = entityManagerService.createEntityManager();
-		
 		try{
+			System.out.println("Created project with: " + project.getName());
 			em.getTransaction().begin();
 			em.persist(project);
 			em.getTransaction().commit();
-
+			
 			return project;
 		}finally{
 			if(em.getTransaction().isActive()){
@@ -39,6 +39,7 @@ public class ProjectsService {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try{
 			final TypedQuery<Project> query = em.createNamedQuery(Project.QUERY_ALL, Project.class);
+			System.out.println("Returning result");
 			return query.getResultList();
 		}finally{
 			em.close();
@@ -52,6 +53,7 @@ public class ProjectsService {
 			if(result == null){
 				throw new IllegalArgumentException("No project with id: " + projectId);
 			}
+			System.out.println("Returning result with id");
 			return result;
 		}finally{
 			em.close();

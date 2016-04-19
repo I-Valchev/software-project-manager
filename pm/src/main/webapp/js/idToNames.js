@@ -1,7 +1,7 @@
-var ENDPOINT_USERS = "http://localhost:3000/users";
-var ENDPOINT_DEVELOPERS = "http://localhost:3000/developers";
-var ENDPOINT_PROJECT_MANAGERS = "http://localhost:3000/projectmanagers";
-var ENDPOINT_TASKS = "http://localhost:3000/tasks";
+var ENDPOINT_USERS = "http://localhost:8080/pm/rest/users";
+var ENDPOINT_DEVELOPERS = "http://localhost:8080/pm/rest/developers";
+var ENDPOINT_PROJECT_MANAGERS = "http://localhost:8080/pm/rest/projectmanagers";
+var ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks";
 
 function endpointProjectManagers(id){
 	return ENDPOINT_PROJECT_MANAGERS + "/" + id;

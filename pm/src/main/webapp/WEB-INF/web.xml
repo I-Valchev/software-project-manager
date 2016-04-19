@@ -12,6 +12,7 @@
             <param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>
 				rest
+				com.fasterxml.jackson.jaxrs.jsons
 			</param-value>
         </init-param>
         

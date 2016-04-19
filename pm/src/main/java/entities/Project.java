@@ -32,15 +32,15 @@ public class Project {
 	@Column(name="PROJECT_ID")
 	private long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name="name")
 	private String name;
 	
-	@Column(nullable = false)
-	private boolean status;
+	/*@Column(nullable = false, name="status")
+	private boolean status;*/
 	
-	@Column(nullable = false)
+	/*@Column(nullable = false)
 	@OneToOne
-	private ProjectManager projectManager;
+	private ProjectManager projectManager;*/
 	
 	public long getId() {
 		return id;
@@ -58,7 +58,7 @@ public class Project {
 		this.name = name;
 	}
 
-	public boolean getStatus() {
+	/*public boolean getStatus() {
 		return status;
 	}
 
@@ -72,7 +72,7 @@ public class Project {
 
 	public void setProjectManager(ProjectManager projectManager) {
 		this.projectManager = projectManager;
-	}
+	}*/
 	
 	@JoinTable(
 			joinColumns = {	@JoinColumn(name = "project_id", referencedColumnName = "PROJECT_ID", nullable = false) }, 

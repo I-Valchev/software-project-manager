@@ -46,15 +46,26 @@ public class ProjectRest {
 	}
 	
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({MediaType.APPLICATION_JSON})
+
 	public Project createProject(Project project){
 		//TODO get current member after security
-		final List<ProjectManager> members = projectManagersService.getProjectManagers();
-		project.setProjectManager(members.iterator().next());
+//		final List<ProjectManager> members = projectManagersService.getProjectManagers();
+//		project.setProjectManager(members.iterator().next());
 		
 		return project;
 	}
+//	@POST
+//	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//	public Project createProject(Project project){
+//		//TODO get current member after security
+//		final List<ProjectManager> members = projectManagersService.getProjectManagers();
+////		project.setProjectManager(members.iterator().next());
+//		
+//		return projectsService.createProject(project);
+//	}
 	
 	@DELETE
 	@Path("/{projectId}")
@@ -70,8 +81,8 @@ public class ProjectRest {
 		final Project fromDb = projectsService.getProject(projectId);
 		fromDb.setName(project.getName());
 		fromDb.setDevelopers(developersService.getDevelopersByProject(project));
-		fromDb.setProjectManager(project.getProjectManager());
-		fromDb.setStatus(project.getStatus());
+//		fromDb.setProjectManager(project.getProjectManager());
+//		fromDb.setStatus(project.getStatus());
 		
 		return projectsService.updateProject(fromDb);
 	}
