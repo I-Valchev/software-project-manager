@@ -7,9 +7,7 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import entities.Project;
 import entities.ProjectManager;
-
 
 @Singleton
 public class ProjectManagersService {

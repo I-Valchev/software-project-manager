@@ -53,10 +53,10 @@ $(document).ready(function() {
     		var val = $('#radio_pm').is(':checked');
         	
         	if(val == true){
-        		var developer = {usersId: user.id}
+        		var developer = {user: user}
         		addProjectManager(developer);
         	}else{
-        		var project_manager = {usersId: user.id}
+        		var project_manager = {user: user}
         		addDeveloper(project_manager);
         	}
     	})

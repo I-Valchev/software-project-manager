@@ -19,7 +19,7 @@ public class PmServletContextListener extends GuiceServletContextListener {
 				@Override
 				protected void configureServlets() {
 					bind(ProjectsService.class);
-//					bind(ProjectManagersService.class);
+					bind(ProjectManagersService.class);
 					bind(EntityManagerService.class);
 					bind(UsersService.class);
 				}

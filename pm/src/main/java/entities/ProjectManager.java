@@ -1,5 +1,6 @@
 package entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +26,8 @@ public class ProjectManager {
 	@Id
 	private long id;
 	
-	@Column(nullable = false)
-	@OneToOne
+	@Column(nullable = false, name="user")
+	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
 
 	public void setId(long id) {
@@ -40,6 +41,4 @@ public class ProjectManager {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	
 }
