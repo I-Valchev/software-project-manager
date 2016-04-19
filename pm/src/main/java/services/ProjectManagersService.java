@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import entities.Project;
 import entities.ProjectManager;
 
 
@@ -19,7 +20,7 @@ public class ProjectManagersService {
 		this.entityManagerService = entityManagerService;
 	}
 
-	public ProjectManager createProject(ProjectManager projectManager){
+	public ProjectManager createProjectManager(ProjectManager projectManager){
 		final EntityManager em = entityManagerService.createEntityManager();
 		try{
 			em.getTransaction().begin();
@@ -55,6 +56,22 @@ public class ProjectManagersService {
 			
 			return result;
 		}finally {
+			em.close();
+		}
+	}
+	
+	public ProjectManager updateProjectManager(ProjectManager projectManager){
+		final EntityManager em = entityManagerService.createEntityManager();
+		try{
+			em.getTransaction().begin();
+			final ProjectManager result = em.merge(projectManager);
+			em.getTransaction().commit();
+			
+			return result;
+		}finally{
+			if(em.getTransaction().isActive()){
+				em.getTransaction().rollback();
+			}
 			em.close();
 		}
 	}
