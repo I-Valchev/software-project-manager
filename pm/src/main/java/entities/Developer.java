@@ -33,8 +33,8 @@ public class Developer {
 	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
 
-	public void setId(long id) {
-		this.id = id;
+	public long getId() {
+		return id;
 	}
 
 	public User getUser() {
