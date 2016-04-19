@@ -1,5 +1,6 @@
 package entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Developer {
 	private long id;
 	
 	@Column(nullable = false)
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
 
 	public void setId(long id) {
