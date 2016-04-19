@@ -1,6 +1,7 @@
 import services.EntityManagerService;
 import services.ProjectManagersService;
 import services.ProjectsService;
+import services.UsersService;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -20,6 +21,7 @@ public class PmServletContextListener extends GuiceServletContextListener {
 					bind(ProjectsService.class);
 //					bind(ProjectManagersService.class);
 					bind(EntityManagerService.class);
+					bind(UsersService.class);
 				}
 			});
 		}
