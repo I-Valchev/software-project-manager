@@ -117,18 +117,14 @@ $(document).ready(function() {
     
     	getDevelopers().then(function(response){
     		function addDeveloperToList(developer){
-    			getUser(developer.usersId).then(function(response){
+    			var li = $("<li></li>");
+    			li.attr("data-developer-id", developer.id);
     				
-    				var li = $("<li></li>");
-    				li.attr("data-developer-id", developer.id);
-    				
-    				var anchor =$("<a href='#'></a>");
-    				anchor.text(response.username);
-    				li.append(anchor);
+    			var anchor =$("<a href='#'></a>");
+    			anchor.text(developer.user.username);
+    			li.append(anchor);
 
-    				list_developers.append(li);
-    				
-    			})
+    			list_developers.append(li);
     		}
     		
     		$(response).each(function(index, obj){
