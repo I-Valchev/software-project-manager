@@ -49,16 +49,15 @@ $(document).ready(function() {
         		password: password
         };
     	
-    	addUser(user).then(function(user){
-    		var val = $('#radio_pm').is(':checked');
-        	
-        	if(val == true){
-        		var developer = {user: user}
-        		addProjectManager(developer);
-        	}else{
-        		var project_manager = {user: user}
-        		addDeveloper(project_manager);
-        	}
-    	})
+    	
+    	var val = $('#radio_pm').is(':checked');
+    	
+    	if(val == true){
+    		var developer = {user: user}
+    		addProjectManager(developer);
+    	}else{
+    		var project_manager = {user: user}
+    		addDeveloper(project_manager);
+    	}
     })
 });
