@@ -1,8 +1,8 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks";
-    var ENDPOINT_COMMENTS = "http://localhost:8080/pm/rest/taskcomments";
+    var ENDPOINT_TASKS = "http://localhost:8080/05_SampleBackend/rest/tasks";
+    var ENDPOINT_COMMENTS = "http://localhost:8080/05_SampleBackend/rest/taskcomments";
     var DETAIL_PROJECT_URL = "detailProjectDisplay";
     var PROJECT_ID = null;
     

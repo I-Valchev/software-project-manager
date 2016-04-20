@@ -25,14 +25,13 @@ public class ProjectsService {
 	public Project createProject(Project project){
 		final EntityManager em = entityManagerService.createEntityManager();
 		
-		List<Developer> developers = new ArrayList<Developer>();
+		List<Developer> developers = project.getDevelopers();
+		project.setDevelopers(new ArrayList<Developer>());
 		
-		for(Developer dev: project.getDevelopers()){
-			developers.add(developersService.updateDeveloper(dev));
-			
+		for(Developer dev: developers){
+			Developer tmp = em.find(Developer.class, dev.getId());
+			project.addDeveloper(tmp);
 		}
-
-		project.setDevelopers(developers);
 		
 		try{
 			em.getTransaction().begin();
@@ -52,7 +51,6 @@ public class ProjectsService {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try{
 			final TypedQuery<Project> query = em.createNamedQuery(Project.QUERY_ALL, Project.class);
-			System.out.println("Returning result");
 			return query.getResultList();
 		}finally{
 			em.close();

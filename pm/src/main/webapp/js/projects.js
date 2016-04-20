@@ -1,7 +1,7 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_PROJECTS = "http://localhost:8080/pm/rest/projects";
+    var ENDPOINT_PROJECTS = "http://localhost:8080/05_SampleBackend/rest/projects";
     
     var projects_table = $("#projects_table");
     
@@ -142,6 +142,7 @@ $(document).ready(function() {
     	var project_name = $("#project_name_create").val();
     	var project_status = $("#project_active_create").is(":checked");
     	var developer_id = $("#span-dropdown-developers").attr("data-developer-id");
+    	alert(project_name)
 
     	getDeveloper(developer_id).then(function(developer){
     		var developers = new Array(developer)

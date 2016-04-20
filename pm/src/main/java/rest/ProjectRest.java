@@ -1,5 +1,6 @@
 package rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import entities.Developer;
 import entities.Project;
 import entities.ProjectManager;
 import services.DevelopersService;
@@ -48,10 +50,18 @@ public class ProjectRest {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON})
-
 	public Project createProject(Project project){
 		final List<ProjectManager> members = projectManagersService.getProjectManagers();
 		project.setProjectManager(members.iterator().next());
+		/*System.out.println(project.getDevelopers().getClass().getName());
+//		project.setDevelopers(project.getDevelopers());
+		
+		List<Developer> developers = project.getDevelopers();
+		project.developers = new ArrayList<Developer>();
+		project = projectsService.createProject(project);
+		
+		project.setDevelopers(developers);
+		return projectsService.updateProject(project);*/
 		return projectsService.createProject(project);
 	}
 	

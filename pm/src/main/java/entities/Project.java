@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -46,9 +47,9 @@ public class Project {
 		return id;
 	}
 
-	public void setId(long id) {
+	/*public void setId(long id) {
 		this.id = id;
-	}
+	}*/
 
 	public String getName() {
 		return name;
@@ -76,10 +77,9 @@ public class Project {
 	
 	@JoinTable(
 			joinColumns = {	@JoinColumn(name = "project_id", referencedColumnName = "PROJECT_ID", nullable = false) }, 
-			inverseJoinColumns = {	@JoinColumn(name = "developer_id", referencedColumnName = "DEVELOPER_ID", nullable = false) }
-		)
-		@ManyToMany(targetEntity=Developer.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Developer> developers;
+			inverseJoinColumns = {	@JoinColumn(name = "developer_id", referencedColumnName = "DEVELOPER_ID", nullable = false) })
+	@ManyToMany(targetEntity=Developer.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	public List<Developer> developers;
 
 	public List<Developer> getDevelopers() {
 		return developers;
@@ -87,6 +87,14 @@ public class Project {
 
 	public void setDevelopers(List<Developer> developers) {
 		this.developers = developers;
+	}
+	
+	public Project(){
+		this.developers = new ArrayList<Developer>();
+	}
+	
+	public void addDeveloper(Developer developer){
+		this.developers.add(developer);
 	}
 	
 }
