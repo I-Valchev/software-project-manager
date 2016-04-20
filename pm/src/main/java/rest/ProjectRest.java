@@ -34,7 +34,7 @@ public class ProjectRest {
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Project> getProject(){
+	public List<Project> getProjects(){
 		return projectsService.getProjects();
 	}
 	

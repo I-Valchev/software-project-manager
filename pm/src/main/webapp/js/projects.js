@@ -119,6 +119,7 @@ $(document).ready(function() {
     		function addDeveloperToList(developer){
     			var li = $("<li></li>");
     			li.attr("data-developer-id", developer.id);
+    			alert(developer.id)
     				
     			var anchor =$("<a href='#'></a>");
     			anchor.text(developer.user.username);
@@ -136,19 +137,27 @@ $(document).ready(function() {
     
     $("#create_project_form").submit(function(e){
     	//TODO More than one developer per project
+    	e.preventDefault();
+    	
     	var project_name = $("#project_name_create").val();
     	var project_status = $("#project_active_create").is(":checked");
     	var developer_id = $("#span-dropdown-developers").attr("data-developer-id");
-    	var project = {projectManagerId: 2, name: project_name, status: project_status, developerIds: developer_id};
 
-    	var createPromise = $.ajax(ENDPOINT_PROJECTS, {
-    		method: "POST",
-    		contentType: "application/json; charset=utf-8",
-    		data: JSON.stringify(project),
-    		dataType: "json"
-    	}).then(function(response) {
-    		console.log(response);
-    		return response;
+    	getDeveloper(developer_id).then(function(developer){
+    		var developers = new Array(developer)
+    		console.log(developers[0])
+        	var project = {name: project_name, status: project_status, developers: developers};
+        	var createPromise = $.ajax(ENDPOINT_PROJECTS, {
+        		method: "POST",
+        		contentType: "application/json; charset=utf-8",
+        		data: JSON.stringify(project),
+        		dataType: "json"
+        	}).then(function(response) {
+        		alert("Return")
+        		console.log(response);
+        		return response;
+        	});
+
     	});
     })
 

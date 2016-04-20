@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,21 +8,33 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import entities.Developer;
 import entities.Project;
 
 @Singleton
 public class ProjectsService {
 	private final EntityManagerService entityManagerService;
+	private final DevelopersService developersService;
 	
 	@Inject
-	public ProjectsService(EntityManagerService entityManagerService) {
+	public ProjectsService(EntityManagerService entityManagerService, DevelopersService developersService) {
 		this.entityManagerService = entityManagerService;
+		this.developersService = developersService;
 	}
 	
 	public Project createProject(Project project){
 		final EntityManager em = entityManagerService.createEntityManager();
+		
+		List<Developer> developers = new ArrayList<Developer>();
+		
+		for(Developer dev: project.getDevelopers()){
+			developers.add(developersService.updateDeveloper(dev));
+			
+		}
+
+		project.setDevelopers(developers);
+		
 		try{
-			System.out.println("Created project with: " + project.getName());
 			em.getTransaction().begin();
 			em.persist(project);
 			em.getTransaction().commit();

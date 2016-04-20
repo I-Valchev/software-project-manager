@@ -78,7 +78,7 @@ public class Project {
 			joinColumns = {	@JoinColumn(name = "project_id", referencedColumnName = "PROJECT_ID", nullable = false) }, 
 			inverseJoinColumns = {	@JoinColumn(name = "developer_id", referencedColumnName = "DEVELOPER_ID", nullable = false) }
 		)
-		@ManyToMany(targetEntity=Developer.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+		@ManyToMany(targetEntity=Developer.class, fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Developer> developers;
 
 	public List<Developer> getDevelopers() {

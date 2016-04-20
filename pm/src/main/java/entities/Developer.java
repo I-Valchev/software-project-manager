@@ -1,4 +1,4 @@
-package entities;
+	package entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,6 +35,10 @@ public class Developer {
 
 	public long getId() {
 		return id;
+	}
+	
+	public void setId(long id){
+		this.id = id;
 	}
 
 	public User getUser() {
