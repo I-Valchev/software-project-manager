@@ -14,12 +14,10 @@ import entities.Project;
 @Singleton
 public class ProjectsService {
 	private final EntityManagerService entityManagerService;
-	private final DevelopersService developersService;
 	
 	@Inject
-	public ProjectsService(EntityManagerService entityManagerService, DevelopersService developersService) {
+	public ProjectsService(EntityManagerService entityManagerService) {
 		this.entityManagerService = entityManagerService;
-		this.developersService = developersService;
 	}
 	
 	public Project createProject(Project project){
