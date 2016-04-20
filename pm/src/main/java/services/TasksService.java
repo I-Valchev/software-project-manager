@@ -76,7 +76,6 @@ public class TasksService {
 			em.getTransaction().begin();
 			final Task result = em.merge(task);
 			em.getTransaction().commit();
-			
 			return result;
 		}finally{
 			if(em.getTransaction().isActive()){

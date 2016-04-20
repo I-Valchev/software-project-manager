@@ -90,22 +90,6 @@ $(document).ready(function() {
 		delete_button.append(em_delete_icon);
 		action_column.append(delete_button);
 		
-		/*getDeveloper(task.developerId).then(function(developer){
-			getUser(developer.userId).then(function(user){
-				tasks_table.children('tbody')
-				.append($("<tr></tr>")
-				.append(action_column)
-				.append($("<td></td>").text(task.name))
-				.append($("<td></td>").text(task.type))
-				.append($("<td></td>").text(user.username))
-				.append($("<td></td>").text(task.dateCreated))
-				.append($("<td></td>").text(task.dateAssigned))
-				.append($("<td></td>").text(task.dateSubmitted))
-				.append($("<td></td>").text(task.dateCompleted))
-				.append($("<td></td>").text(task.deadline)));
-			})
-		})*/
-		
 		tasks_table.children('tbody')
 		.append($("<tr></tr>")
 		.append(action_column)
@@ -182,10 +166,11 @@ $(document).ready(function() {
     			dateSubmitted: task.dateSubmitted,
     			dateCompleted: task.dateCompleted,
     			deadline: task.deadline,
-    			developersId: task.developersId
+    			developer: task.developer
     		}),
     		dataType: "json"
     	}).then(function(response) {
+    		displayTasks(PROJECT_ID);
     	});
     }
     
@@ -225,6 +210,7 @@ $(document).ready(function() {
 		
 		$("#span-dropdown-developers-edit").attr("data-developer-id", task.developer.id);
 		$("#span-dropdown-developers-edit").text(task.developer.user.username);
+		
     }
     
     $("#edit-task-form").submit(function(e){
