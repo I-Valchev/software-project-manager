@@ -47,28 +47,17 @@ $(document).ready(function() {
     	action_column.append(delete_button);
 
     	var project_manager_column = $("<td></td>");
-    	
-    	getProjectManager(project.projectManagerId).then(function(response){
-    		getUser(response.usersId).then(function(project_manager_user){
-    			project_manager_column.text(project_manager_user.username);
-    		});
-    	});
-    	
-    	var developers_column = $("<td></td>");
+    	project_manager_column.text(project.projectManager.user.username)
 
-    	getDevelopersByProject(project.id).then(function(response){
-    		
-    		function addDeveloperUsername(response){
-	    		getUser(response.usersId).then(function(developer_user){
-	    			var new_text = developers_column.text().concat(" " + developer_user.username);
-	    			developers_column.text(new_text);
-	    		});
-    		}
-    		
-    		$(response).each(function(index, obj){
-    			addDeveloperUsername(obj);
-    		});
-    	});
+    	var developers_column = $("<td></td>");
+    	
+    	var developers_string = "";
+    	
+    	$(project.developers).each(function(index, developer){
+    		developers_string += developer.user.username + " ";
+    	})
+    	
+    	developers_column.text(developers_string)
     	
     	var tasks_column = $("<td></td>");
     	tasks_column.text(project.taskIds);

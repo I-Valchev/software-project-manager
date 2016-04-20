@@ -29,6 +29,10 @@ public class ProjectManager {
 	@Column(nullable = false, name="user")
 	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
+	
+	public long getId(){
+		return id;
+	}
 
 	public void setId(long id) {
 		this.id = id;
