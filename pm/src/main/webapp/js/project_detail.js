@@ -9,7 +9,7 @@ $(document).ready(function() {
     var tasks_table = $("#tasks-table");
     
     function endpointTask(id){
-    	return "http://localhost:8080/rest/tasks" + "/" + id;
+    	return ENDPOINT_TASKS + "/" + id;
     }
     
     function endpointTasksByProject(id){
@@ -206,40 +206,6 @@ $(document).ready(function() {
     }
     
     function editTask(task){
-    	function addDeveloperToEdit(task, developerId){
-    		getDevelopers().then(function(response){
-        		
-        		function addDeveloperToList(developer){
-        			getUser(developer.usersId).then(function(response){
-        				var list_developers = $("#dropdown-developers-edit");
-        				
-        				var li = $("<li></li>");
-        				li.attr("data-developer-id", developerId);
-        				
-        				var anchor =$("<a href='#'></a>");
-        				anchor.text(response.username);
-        				li.append(anchor);
-
-        				list_developers.append(li);
-        				
-        			})
-        		}
-        		
-        		$(response).each(function(index, obj){
-    	    		addDeveloperToList(obj);
-    	    	});
-        		
-        		getDeveloper(developerId).then(function(response){
-        			getUser(response.usersId).then(function (user){
-        				$("#span-dropdown-developers-edit").attr("data-developer-id", developerId);
-        				$("#span-dropdown-developers-edit").text(user.username);
-        			})
-        		})
-        		
-        		$("#span-dropdown-developers-edit").attr("data-developer-id", developerId);
-        	});
-		}
-    	
     	//TODO Developer should be dropdown, not text input field
     	$("#task-name-edit").val(task.name);
     	$('#span-dropdown-edit').text(task.type);
@@ -248,8 +214,17 @@ $(document).ready(function() {
         $("#date-submitted-edit").val(task.dateSubmitted);
     	$("#date-completed-edit").val(task.dateCompleted);
     	$("#deadline-edit").val(task.deadline);
-    	addDeveloperToEdit(task, task.developersId);
-
+    	
+		var list_developers = $("#dropdown-developers-edit");
+		var li = $("<li></li>");
+		li.attr("data-developer-id", task.developer.id);
+		var anchor =$("<a href='#'></a>");
+		anchor.text(task.developer.user.username);
+		li.append(anchor);
+		list_developers.append(li);
+		
+		$("#span-dropdown-developers-edit").attr("data-developer-id", task.developer.id);
+		$("#span-dropdown-developers-edit").text(task.developer.user.username);
     }
     
     $("#edit-task-form").submit(function(e){
