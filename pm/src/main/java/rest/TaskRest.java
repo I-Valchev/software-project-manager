@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -77,5 +78,11 @@ public class TaskRest {
 		fromDb.setDeveloper(task.getDeveloper());
 		
 		return tasksService.updateTask(fromDb);
+	}
+	
+	@DELETE
+	@Path("/{taskId}")
+	public void deleteTask(@PathParam("taskId") long taskId){
+		tasksService.deleteTask(taskId);
 	}
 }
