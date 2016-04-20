@@ -117,17 +117,17 @@
 				<fieldset>
 					<legend>Task dates</legend>
 					<span class="input-group-addon">Date created</span> <input
-						id="date-created-create" type="date" class="form-control" required />
+						id="date-created-create" type="date" class="form-control" />
 					<br> <span class="input-group-addon">Date assigned</span> <input
 						id="date-assigned-create" type="date" class="form-control"
-						required /> <br> <span class="input-group-addon">Date
+						/> <br> <span class="input-group-addon">Date
 						submitted</span> <input id="date-submitted-create" type="date"
-						class="form-control" required /> <br> <span
+						class="form-control" /> <br> <span
 						class="input-group-addon">Date completed</span> <input
 						id="date-completed-create" type="date" class="form-control"
-						required /> <br> <span class="input-group-addon">Deadline</span>
+						/> <br> <span class="input-group-addon">Deadline</span>
 					<input id="deadline-create" type="date" class="form-control"
-						required /> <br>
+						 /> <br>
 				</fieldset>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
