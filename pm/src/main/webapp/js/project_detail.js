@@ -33,7 +33,16 @@ $(document).ready(function() {
     	var task = {name: name, type: type, dateCreated: date_created, 
     			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
     	
-    	addTask(task, projectId, developerId)
+    	addTask(task, projectId, developerId);
+    	
+    	$("#task-name-create").val("");
+    	$('#span-dropdown-create').text("");
+    	$("#date-created-create").val("");
+    	$("#date-assigned-create").val("");
+    	$("#date-submitted-create").val("");
+    	$("#date-completed-create").val("");
+    	$("#deadline-create").val("");
+    	$("#dropdown-developers-create").empty();
     }
 
     function addTask(task, projectId, developerId){
@@ -227,7 +236,7 @@ $(document).ready(function() {
     	$("#date-completed-edit").val("");
     	$("#deadline-edit").val("");
     	$("#developer-edit").text("Select dev");
-    	$("#dropdown-developers-edit").empty();
+    	$("#dropdown-developers-create").empty();
     	
     	$("#edit-task-modal").modal('hide');
 	})
