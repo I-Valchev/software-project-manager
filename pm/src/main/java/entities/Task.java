@@ -88,35 +88,35 @@ public class Task {
 		this.developer = developer;
 	}
 
-	public String getStringCreated() {
+	public String getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setStringCreated(String dateCreated) {
+	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public String getStringAssigned() {
+	public String getDateAssigned() {
 		return dateAssigned;
 	}
 
-	public void setStringAssigned(String dateAssigned) {
+	public void setDateAssigned(String dateAssigned) {
 		this.dateAssigned = dateAssigned;
 	}
 
-	public String getStringSubmitted() {
+	public String getDateSubmitted() {
 		return dateSubmitted;
 	}
 
-	public void setStringSubmitted(String dateSubmitted) {
+	public void setDateSubmitted(String dateSubmitted) {
 		this.dateSubmitted = dateSubmitted;
 	}
 
-	public String getStringCompleted() {
+	public String getDateCompleted() {
 		return dateCompleted;
 	}
 
-	public void setStringCompleted(String dateCompleted) {
+	public void setDateCompleted(String dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 

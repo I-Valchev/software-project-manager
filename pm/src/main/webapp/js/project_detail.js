@@ -30,37 +30,10 @@ $(document).ready(function() {
     	var developerId = $("#span-dropdown-developers-create").attr("data-developer-id");
     	developerId = Number(developerId);
     	
-    	alert(developerId)
-    	/*getProject(projectId).then(function(project){
-	    	getDeveloper(developer_id).then(function(developer){
-	    		var task = {name: name, type: type, developer: developer, dateCreated: date_created, 
-	        			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: "Abv", project: project};
-	        	
-	        	console.log(task)
-	        	
-	        	$("#task-name-create").val("");
-	        	$('#span-dropdown-create').text("Select type")
-	        	$("#date-created-create").val("");
-	        	$("#date-assigned-create").val("");
-	        	$("#date-submitted-create").val("");
-	        	$("#date-completed-create").val("");
-	        	$("#deadline-create").val("");
-	        	$("#span-dropdown-developers-create").text("Select dev");
-	        	$("#dropdown-developers-create").empty();
-	        	//TODO Developer should be dropdown, not text input field
-	        	
-	        	addTask(task);
-	    	})
-    	})*/
+    	var task = {name: name, type: type, dateCreated: date_created, 
+    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline};
     	
-    	/*var task = {name: name, type: type, dateCreated: date_created, 
-    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: "Abv"};
-    	*/
-    	
-    	var task = {name:name, type: type}
-    	console.log(task)
     	addTask(task, projectId, developerId)
-    	
     }
 
     function addTask(task, projectId, developerId){
@@ -70,8 +43,7 @@ $(document).ready(function() {
     		data: JSON.stringify(task),
     		dataType: "json"
     	}).then(function(response) {
-    		alert("Task posted")
-    		displayTasks();
+    		displayTasks(PROJECT_ID);
     		return response;
     	});
     }
@@ -84,7 +56,6 @@ $(document).ready(function() {
 	}
 	
     function listTasks(project_id) {  
-    	alert("project id: " + project_id);
         return $.ajax(endpointTasksByProject(project_id), {
 			method: "GET",
 			data: {
@@ -172,7 +143,6 @@ $(document).ready(function() {
     		function addDeveloperToList(developer){
     			var li = $("<li></li>");
     			li.attr("data-developer-id", developer.id);
-    			alert(developer.id)
     				
     			var anchor =$("<a href='#'></a>");
     			anchor.text(developer.user.username);
