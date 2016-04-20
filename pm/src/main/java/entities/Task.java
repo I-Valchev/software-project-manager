@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @NamedQueries({
-	@NamedQuery(name=Developer.QUERY_ALL,
+	@NamedQuery(name=Task.QUERY_ALL,
 		query = "SELECT t from Task t"),
-	@NamedQuery(name=Developer.QUERY_BY_PROJECT, query = "SELECT t from Task t where t.project = :project")
+	@NamedQuery(name=Task.QUERY_BY_PROJECT, query = "SELECT t from Task t where t.project = :project")
 })
 
 public class Task {
@@ -40,19 +38,19 @@ public class Task {
 	private Developer developer;
 	
 	@Column
-	private Date dateCreated;
+	private String dateCreated;
 	
 	@Column
-	private Date dateAssigned;
+	private String dateAssigned;
 	
 	@Column
-	private Date dateSubmitted;
+	private String dateSubmitted;
 	
 	@Column
-	private Date dateCompleted;
+	private String dateCompleted;
 	
 	@Column
-	private Date deadline;
+	private String deadline;
 
 	@Column
 	@ManyToOne
@@ -90,43 +88,43 @@ public class Task {
 		this.developer = developer;
 	}
 
-	public Date getDateCreated() {
+	public String getStringCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setStringCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public Date getDateAssigned() {
+	public String getStringAssigned() {
 		return dateAssigned;
 	}
 
-	public void setDateAssigned(Date dateAssigned) {
+	public void setStringAssigned(String dateAssigned) {
 		this.dateAssigned = dateAssigned;
 	}
 
-	public Date getDateSubmitted() {
+	public String getStringSubmitted() {
 		return dateSubmitted;
 	}
 
-	public void setDateSubmitted(Date dateSubmitted) {
+	public void setStringSubmitted(String dateSubmitted) {
 		this.dateSubmitted = dateSubmitted;
 	}
 
-	public Date getDateCompleted() {
+	public String getStringCompleted() {
 		return dateCompleted;
 	}
 
-	public void setDateCompleted(Date dateCompleted) {
+	public void setStringCompleted(String dateCompleted) {
 		this.dateCompleted = dateCompleted;
 	}
 
-	public Date getDeadline() {
+	public String getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
 
@@ -141,6 +139,5 @@ public class Task {
 	public static String getQueryAll() {
 		return QUERY_ALL;
 	}
-	
 	
 }

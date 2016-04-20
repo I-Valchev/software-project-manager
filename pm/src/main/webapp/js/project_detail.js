@@ -1,15 +1,19 @@
 $(document).ready(function() {
     "use strict";
     
-    var ENDPOINT_TASKS = "http://localhost:8080/05_SampleBackend/rest/tasks";
-    var ENDPOINT_COMMENTS = "http://localhost:8080/05_SampleBackend/rest/taskcomments";
+    var ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks";
+    var ENDPOINT_COMMENTS = "http://localhost:8080/pm/rest/taskcomments";
     var DETAIL_PROJECT_URL = "detailProjectDisplay";
     var PROJECT_ID = null;
     
     var tasks_table = $("#tasks-table");
     
     function endpointTask(id){
-    	return ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks" + "/" + id;
+    	return "http://localhost:8080/rest/tasks" + "/" + id;
+    }
+    
+    function endpointTasksByProject(id){
+    	return ENDPOINT_TASKS + "/project/" + id
     }
     
     
@@ -23,33 +27,50 @@ $(document).ready(function() {
     	var date_completed = $("#date-completed-create").val();
     	var deadline = $("#deadline-create").val();
     	
-    	var developer = $("#span-dropdown-developers-create").attr("data-developer-id");
-    	developer = Number(developer);
+    	var developerId = $("#span-dropdown-developers-create").attr("data-developer-id");
+    	developerId = Number(developerId);
     	
-    	var task = {name: name, type: type, developersId: developer, dateCreated: date_created, 
-    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: deadline, projectId: projectId};
+    	alert(developerId)
+    	/*getProject(projectId).then(function(project){
+	    	getDeveloper(developer_id).then(function(developer){
+	    		var task = {name: name, type: type, developer: developer, dateCreated: date_created, 
+	        			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: "Abv", project: project};
+	        	
+	        	console.log(task)
+	        	
+	        	$("#task-name-create").val("");
+	        	$('#span-dropdown-create').text("Select type")
+	        	$("#date-created-create").val("");
+	        	$("#date-assigned-create").val("");
+	        	$("#date-submitted-create").val("");
+	        	$("#date-completed-create").val("");
+	        	$("#deadline-create").val("");
+	        	$("#span-dropdown-developers-create").text("Select dev");
+	        	$("#dropdown-developers-create").empty();
+	        	//TODO Developer should be dropdown, not text input field
+	        	
+	        	addTask(task);
+	    	})
+    	})*/
     	
-    	$("#task-name-create").val("");
-    	$('#span-dropdown-create').text("Select type")
-    	$("#date-created-create").val("");
-    	$("#date-assigned-create").val("");
-    	$("#date-submitted-create").val("");
-    	$("#date-completed-create").val("");
-    	$("#deadline-create").val("");
-    	$("#span-dropdown-developers-create").text("Select dev");
-    	$("#dropdown-developers-create").empty();
-    	//TODO Developer should be dropdown, not text input field
+    	/*var task = {name: name, type: type, dateCreated: date_created, 
+    			dateAssigned: date_assigned, dateSubmitted: date_submitted, dateCompleted: date_completed, deadline: "Abv"};
+    	*/
     	
-    	return task;
+    	var task = {name:name, type: type}
+    	console.log(task)
+    	addTask(task, projectId, developerId)
+    	
     }
 
-    function addTask(task){
-    	var createPromise = $.ajax(ENDPOINT_TASKS, {
+    function addTask(task, projectId, developerId){
+    	var createPromise = $.ajax(ENDPOINT_TASKS + "/" + projectId + "/" + developerId, {
     		method: "POST",
     		contentType: "application/json; charset=utf-8",
     		data: JSON.stringify(task),
     		dataType: "json"
     	}).then(function(response) {
+    		alert("Task posted")
     		displayTasks();
     		return response;
     	});
@@ -62,8 +83,9 @@ $(document).ready(function() {
 		});
 	}
 	
-    function listTasks(project_id) {       
-        return $.ajax(ENDPOINT_TASKS, {
+    function listTasks(project_id) {  
+    	alert("project id: " + project_id);
+        return $.ajax(endpointTasksByProject(project_id), {
 			method: "GET",
 			data: {
 				projectId: project_id
@@ -97,8 +119,8 @@ $(document).ready(function() {
 		delete_button.append(em_delete_icon);
 		action_column.append(delete_button);
 		
-		getDeveloper(task.developersId).then(function(developer){
-			getUser(developer.usersId).then(function(user){
+		/*getDeveloper(task.developerId).then(function(developer){
+			getUser(developer.userId).then(function(user){
 				tasks_table.children('tbody')
 				.append($("<tr></tr>")
 				.append(action_column)
@@ -111,7 +133,20 @@ $(document).ready(function() {
 				.append($("<td></td>").text(task.dateCompleted))
 				.append($("<td></td>").text(task.deadline)));
 			})
-		})
+		})*/
+		
+		tasks_table.children('tbody')
+		.append($("<tr></tr>")
+		.append(action_column)
+		.append($("<td></td>").text(task.name))
+		.append($("<td></td>").text(task.type))
+		.append($("<td></td>").text(task.developer.user.username))
+		.append($("<td></td>").text(task.dateCreated))
+		.append($("<td></td>").text(task.dateAssigned))
+		.append($("<td></td>").text(task.dateSubmitted))
+		.append($("<td></td>").text(task.dateCompleted))
+		.append($("<td></td>").text(task.deadline)));
+		
 	}
 	
 	function displayTasks(project_id){
@@ -126,33 +161,31 @@ $(document).ready(function() {
 
     $("#create-task-form").submit(function(e){
     	e.preventDefault();
-    	var task = createTask();
-    	addTask(task);
+    	createTask();
     	$("#create-task-modal").modal('hide');
     })
     
     $("#create-task").click(function(){
+    	var list_developers = $("#dropdown-developers-create");
+        
     	getDevelopers().then(function(response){
-        		
-        	function addDeveloperToList(developer){
-        		getUser(developer.usersId).then(function(response){
-        			var list_developers = $("#dropdown-developers-create");
-        			
-        			var li = $("<li></li>");
-        			li.attr("data-developer-id", developer.id);
-        			
-        			var anchor =$("<a href='#'></a>");
-        			anchor.text(response.username);
-        			li.append(anchor);
-       				list_developers.append(li);
-       				
-       			})
-       		}
-        		
-       		$(response).each(function(index, obj){
-   	    		addDeveloperToList(obj);
-   	    	});
-       	});
+    		function addDeveloperToList(developer){
+    			var li = $("<li></li>");
+    			li.attr("data-developer-id", developer.id);
+    			alert(developer.id)
+    				
+    			var anchor =$("<a href='#'></a>");
+    			anchor.text(developer.user.username);
+    			li.append(anchor);
+
+    			list_developers.append(li);
+    		}
+    		
+    		$(response).each(function(index, obj){
+	    		addDeveloperToList(obj);
+	    	});
+    		
+    	});
     });
     
     function deleteTask(id){
