@@ -1,3 +1,4 @@
+import services.CommentsService;
 import services.DevelopersService;
 import services.EntityManagerService;
 import services.ProjectManagersService;
@@ -26,6 +27,7 @@ public class PmServletContextListener extends GuiceServletContextListener {
 					bind(UsersService.class);
 					bind(DevelopersService.class);
 					bind(TasksService.class);
+					bind(CommentsService.class);
 				}
 			});
 		}
