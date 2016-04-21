@@ -10,6 +10,7 @@
 		<class>entities.ProjectManager</class>
 		<class>entities.User</class>
 		<class>entities.Task</class>
+		<class>entities.Comment</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
