@@ -2,7 +2,7 @@ $(document).ready(function() {
     "use strict";
     
     var ENDPOINT_TASKS = "http://localhost:8080/pm/rest/tasks";
-    var ENDPOINT_COMMENTS = "http://localhost:8080/pm/rest/taskcomments";
+    var ENDPOINT_COMMENTS = "http://localhost:8080/pm/rest/comments";
     var DETAIL_PROJECT_URL = "detailProjectDisplay";
     var PROJECT_ID = null;
     
@@ -250,11 +250,8 @@ $(document).ready(function() {
 	});
     
     function listTaskComments(task_id) {       
-        return $.ajax(ENDPOINT_COMMENTS, {
+        return $.ajax(ENDPOINT_COMMENTS + '/task/' + task_id, {
 			method: "GET",
-			data: {
-				tasksId: task_id
-			},
 			dataType: "json"
 		});
     }
@@ -282,11 +279,20 @@ $(document).ready(function() {
     }
     
     function addCommentToModal(comment){
-    	getUser(comment.usersId).then(function(response){
+    	getUser(comment.user.id).then(function(response){
     		
-    		$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+response.username+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
+    		$("#comments-row").append("<div class='col-sm-10'> <div class='panel panel-default'> <div class='panel-heading'> <strong>"+comment.user.username+"</strong> <span class='text-muted'>commented on "+comment.date+"</span> </div> <div class='panel-body'>"+comment.content+"</div> </div> </div>")
     	})
     	
+    }
+    
+    function postRequestComment(new_comment){
+    	return $.ajax(ENDPOINT_COMMENTS, {
+    		method: "POST",
+    		contentType: "application/json; charset=utf-8",
+    		data: JSON.stringify(new_comment),
+    		dataType: "json"
+    	})
     }
     
     function addComment(comment_content, taskId){
@@ -309,15 +315,17 @@ $(document).ready(function() {
     	}
     	
 
-    	//TODO Get current user posting the comment
-    	var new_comment = {date: getCurrentDate(), content:comment_content, tasksId: taskId, usersId: 1};
+    	getTask(taskId).then(function(task){
+    		getUser(1).then(function(returned_user){
+    			//TODO Get current user posting the comment
+    	    	var new_comment = {date: getCurrentDate(), content:comment_content, task: task, user: returned_user};
+    	    	postRequestComment(new_comment).then(function(response){
+    	    		fillCommentsForTask(task.id)
+    	    	});
+    		});
+    	});
     	
-    	return $.ajax(ENDPOINT_COMMENTS, {
-    		method: "POST",
-    		contentType: "application/json; charset=utf-8",
-    		data: JSON.stringify(new_comment),
-    		dataType: "json"
-    	})
+    	
     }
     
     $(document).on("click", "#new-comment-button", function(e){
@@ -325,9 +333,11 @@ $(document).ready(function() {
     	
     	var comment_content = $("#new-comment-content").val();
     	var taskId = $("#comments-modal").attr("data-task-id");
-    	addComment(comment_content, taskId).then(function(){
+    	/*addComment(comment_content, taskId).then(function(){
     		fillCommentsForTask(taskId);
-    	});
+    	});*/
+    	
+    	addComment(comment_content, taskId);
     	
     });
     

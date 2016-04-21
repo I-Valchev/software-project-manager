@@ -41,9 +41,9 @@ public class CommentRest {
 	}
 	
 	@GET
-	@Path("/{commentId}/{taskId}")
+	@Path("/task/{taskId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Comment> getCommentsByTask(@PathParam("commentId") long commentId, @PathParam("taskId") long taskId){
+	public List<Comment> getCommentsByTask(@PathParam("taskId") long taskId){
 		return commentsService.getCommentsByTask(tasksService.getTask(taskId));
 	}
 	
@@ -61,7 +61,7 @@ public class CommentRest {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Comment updateComment(@PathParam("commentId") long commentId, Comment comment){
 		final Comment fromDb = commentsService.getComment(commentId);
-		fromDb.setAuthor(comment.getAuthor());
+		fromDb.setUser(comment.getUser());
 		fromDb.setContent(comment.getContent());
 		fromDb.setDate(comment.getDate());
 		fromDb.setTask(comment.getTask());

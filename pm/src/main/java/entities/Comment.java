@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,9 +34,11 @@ public class Comment {
 	private String content;
 	
 	@Column(nullable=false)
-	private User author;
+	@ManyToOne
+	private User user;
 	
 	@Column(nullable=false)
+	@ManyToOne
 	private Task task;
 
 	public long getId() {
@@ -62,12 +65,12 @@ public class Comment {
 		this.content = content;
 	}
 
-	public User getAuthor() {
-		return author;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Task getTask() {
@@ -77,7 +80,4 @@ public class Comment {
 	public void setTask(Task task) {
 		this.task = task;
 	}
-	
-	
-	
 }
