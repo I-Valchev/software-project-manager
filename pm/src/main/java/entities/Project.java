@@ -40,7 +40,7 @@ public class Project {
 	private boolean status;
 	
 	@Column(nullable = false, name="projectManagerId")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private ProjectManager projectManager;
 	
 	public long getId() {

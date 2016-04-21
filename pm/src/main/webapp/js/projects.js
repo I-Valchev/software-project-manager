@@ -108,7 +108,6 @@ $(document).ready(function() {
     		function addDeveloperToList(developer){
     			var li = $("<li></li>");
     			li.attr("data-developer-id", developer.id);
-    			alert(developer.id)
     				
     			var anchor =$("<a href='#'></a>");
     			anchor.text(developer.user.username);
@@ -131,7 +130,6 @@ $(document).ready(function() {
     	var project_name = $("#project_name_create").val();
     	var project_status = $("#project_active_create").is(":checked");
     	var developer_id = $("#span-dropdown-developers").attr("data-developer-id");
-    	alert(project_name)
 
     	getDeveloper(developer_id).then(function(developer){
     		var developers = new Array(developer)
@@ -143,12 +141,17 @@ $(document).ready(function() {
         		data: JSON.stringify(project),
         		dataType: "json"
         	}).then(function(response) {
-        		alert("Return")
-        		console.log(response);
         		return response;
         	});
 
     	});
+    	
+    	$("#project_name_create").val("");
+    	$("#project_active_create").val("")
+    	$("#span-dropdown-developers").empty();
+    	$("#create-modal").modal('hide')
+    	location.reload();
+    	
     })
 
     /* DROPDOWN */

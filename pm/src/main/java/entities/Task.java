@@ -1,5 +1,6 @@
 package entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Task {
 	private String type;
 	
 	@Column(nullable = false)
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Developer developer;
 	
 	@Column
@@ -53,7 +54,7 @@ public class Task {
 	private String deadline;
 
 	@Column
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Project project;
 
 	public long getId() {
