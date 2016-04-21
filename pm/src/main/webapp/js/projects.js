@@ -150,7 +150,7 @@ $(document).ready(function() {
     	$("#project_active_create").val("")
     	$("#span-dropdown-developers").empty();
     	$("#create-modal").modal('hide')
-    	location.reload();
+//    	location.reload();
     	
     })
 

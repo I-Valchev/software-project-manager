@@ -164,23 +164,26 @@ $(document).ready(function() {
 	});
     
     function updateTask(task){
-    	$.ajax(endpointTask(task.id), {
-    		method: "PUT",
-    		contentType: "application/json; charset=utf-8",
-    		data: JSON.stringify({
-    			name: task.name,
-    			type: task.type,
-    			dateCreated: task.dateCreated,
-    			dateAssigned: task.dateAssigned,
-    			dateSubmitted: task.dateSubmitted,
-    			dateCompleted: task.dateCompleted,
-    			deadline: task.deadline,
-    			developer: task.developer
-    		}),
-    		dataType: "json"
-    	}).then(function(response) {
-    		displayTasks(PROJECT_ID);
-    	});
+    	getProject(PROJECT_ID).then(function(project){
+    		$.ajax(endpointTask(task.id), {
+        		method: "PUT",
+        		contentType: "application/json; charset=utf-8",
+        		data: JSON.stringify({
+        			name: task.name,
+        			type: task.type,
+        			dateCreated: task.dateCreated,
+        			dateAssigned: task.dateAssigned,
+        			dateSubmitted: task.dateSubmitted,
+        			dateCompleted: task.dateCompleted,
+        			deadline: task.deadline,
+        			developer: task.developer,
+        			project: project
+        		}),
+        		dataType: "json"
+        	}).then(function(response) {
+        		displayTasks(PROJECT_ID);
+        	});
+    	})
     }
     
     function getEditedTask(){
@@ -225,7 +228,7 @@ $(document).ready(function() {
     $("#edit-task-form").submit(function(e){
 		e.preventDefault();
 		var new_task = getEditedTask();
-		new_task.id = $("#edit-task-button").attr("data-task-id");;
+		new_task.id = $("#edit-task-button").attr("data-task-id");
 		updateTask(new_task);
 		
     	$("#task-name-edit").val("");
