@@ -28,9 +28,9 @@
 						<thead>
 							<tr>
 								<th class="col-md-2"><em class="fa fa-cog"></em></th>
+								<th class="hidden-xs col-md-2">Project</th>
 								<th class="hidden-xs col-md-2">Project Manager</th>
 								<th class="hidden-xs col-md-4">Developers</th>
-								<th class="col-md-4">Tasks</th>
 							</tr>
 						</thead>
 						<tbody>

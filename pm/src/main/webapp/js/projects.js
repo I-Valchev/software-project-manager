@@ -45,6 +45,9 @@ $(document).ready(function() {
     	
     	action_column.append(anchor_info);
     	action_column.append(delete_button);
+    	
+    	var project_column = $("<td></td>");
+    	project_column.text(project.name)
 
     	var project_manager_column = $("<td></td>");
     	project_manager_column.text(project.projectManager.user.username)
@@ -59,13 +62,10 @@ $(document).ready(function() {
     	
     	developers_column.text(developers_string)
     	
-    	var tasks_column = $("<td></td>");
-    	tasks_column.text(project.taskIds);
-    	
     	row.append(action_column);
+    	row.append(project_column);
     	row.append(project_manager_column);
     	row.append(developers_column);
-    	row.append(tasks_column);
     	
     	projects_table.children('tbody').append(row);
     	
